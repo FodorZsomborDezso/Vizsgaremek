@@ -1,8 +1,8 @@
-# 👁️ ArtisticEye - Vizuális Közösségi Platform
+# ArtisticEye - Vizuális Közösségi Platform
 
 Az **ArtisticEye** egy modern, teljes értékű közösségi képmegosztó és ötletbörze platform, amely összehozza a vizuális alkotókat és a művészetkedvelőket. A felhasználók megoszthatják saját alkotásaikat, inspirálódhatnak mások munkáiból, és valós időben tarthatják a kapcsolatot.
 
-## ✨ Főbb Funkciók
+## Főbb Funkciók
 
 * **Dinamikus Galéria:** Pinterest-stílusú (Masonry) elrendezés, letisztult Lightbox képnézegetővel és kategória alapú szűréssel.
 * **Közösségi Ötletbörze:** Oszd meg a vizuális koncepcióidat szövegesen, és nézd meg, ahogy más alkotók életre keltik azokat!
@@ -12,7 +12,7 @@ Az **ArtisticEye** egy modern, teljes értékű közösségi képmegosztó és �
 * **Okos Értesítések:** Azonnali visszajelzés (harang ikon), ha valaki lájkolja a képedet, kommentel, vagy bekövet.
 * **Profi Adminisztráció:** Dedikált admin felület a felhasználók, posztok és jelentések kezelésére.
 
-## 🛠️ Használt Technológiák
+## Használt Technológiák
 
 **Frontend:**
 * React.js (Vite)
@@ -27,7 +27,7 @@ Az **ArtisticEye** egy modern, teljes értékű közösségi képmegosztó és �
 * Bcrypt.js (Jelszó titkosítás)
 * Multer & Sharp (Képfeldolgozás és optimalizálás)
 
-## 🚀 Telepítés és Futtatás (Helyi környezetben)
+## Telepítés és Futtatás (Helyi környezetben)
 
 ### 1. Adatbázis beállítása
 1. Telepíts egy lokális webszervert (pl. XAMPP).
