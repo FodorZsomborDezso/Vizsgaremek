@@ -6,11 +6,11 @@
 ---
 
 ## Tartalomjegyzék
-- [Projekt bemutatása](#-projekt-bemutatása)
-- [Főbb funkciók](#-főbb-funkciók)
-- [Alkalmazott technológiák](#-alkalmazott-technológiák)
-- [Fejlesztők](#-fejlesztők)
-- [Telepítés és Futtatás](#-telepítés-és-futtatás)
+- [Projekt bemutatása](#projekt-bemutatása)
+- [Főbb funkciók](#főbb-funkciók)
+- [Alkalmazott technológiák](#alkalmazott-technológiák)
+- [Fejlesztők](#fejlesztők)
+- [Telepítés és Futtatás](#telepítés-és-futtatás-docker-környezetben)
 
 ## Projekt bemutatása
 Az **ArtisticEye** egy vizsgaremekként készült teljes értékű közösségi képmegosztó és platform. Ötvözi a vizuális galériák (pl. Pinterest) élményét a közösségi média funkcióival (követés, privát chat, valós idejű értesítések). A cél egy olyan aktív, kreatív közösség kialakítása, ahol a felhasználók inspirációt meríthetnek egymás munkáiból, visszajelzéseket adhatnak és kapcsolatokat építhetnek.
