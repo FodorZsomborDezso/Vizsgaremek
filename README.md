@@ -62,9 +62,9 @@ Fejlesztőkként (**Fodor Zsombor Dezső** és **Gerencsér Ákos**) a közös f
 *   Kialakítottuk az adatbázis-tervet (MySQL), a relációs sémát és az adatintegritási szabályokat.
 *   Implementáltuk a biztonsági réteget: JWT alapú hitelesítést, jelszavak titkosítását (Bcrypt.js), és az SQL Injection elleni védelmet.
 *   Integráltuk a kliensoldali állapotkezelést és a szerveroldali, intelligens képfeldolgozó modult (Multer, Sharp).
-*   Kifejlesztettük a valós idejű kommunikációs réteget (Socket.IO) a chat és értesítési rendszerhez.
+*   Kifejlesztettük a kommunikációs réteget a privát chathez, a gépelés jelzéséhez és az értesítési rendszerhez.
 *   Konténerizáltuk a teljes alkalmazást (Docker, Docker Compose) és közösen alakítottuk ki a DevOps folyamatokat.
-*   Beállítottuk az automatizált tesztelési környezeteket (Cypress, Selenium) és megírtuk a teszteseteket.
+*   Beállítottuk az automatizált tesztelési környezeteket (Jest, Supertest, Selenium) és megírtuk az API, illetve E2E teszteseteket.
 
 ---
 
