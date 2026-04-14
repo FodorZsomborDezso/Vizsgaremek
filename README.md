@@ -54,9 +54,17 @@ Az **ArtisticEye** egy vizsgaremekként készült teljes értékű közösségi 
 
 ## Fejlesztők
 
-A projekt fejlesztése közös munkavégzésben, egymást kiegészítve, átfogó frontend és backend tervezéssel készült:
-* **Fodor Zsombor Dezső**
-* **Gerencsér Ákos**
+A projektet szoros együttműködésben, közös munkában fejlesztettük. Mindketten egyenlő mértékben, közösen vettünk részt a teljes Full-Stack alkalmazás – a frontend, a backend és az infrastruktúra – kialakításában.
+
+Fejlesztőkként (**Fodor Zsombor Dezső** és **Gerencsér Ákos**) a közös feladataink a következők voltak:
+*   Közösen terveztük és kiviteleztük a React.js alapú kliensoldali architektúrát, a komponens-struktúrát és a teljes UI/UX dizájnt (Glassmorphism, Masonry grid).
+*   Implementáltuk a Node.js/Express.js alapú REST API szerverarchitektúrát és a végpontokat.
+*   Kialakítottuk az adatbázis-tervet (MySQL), a relációs sémát és az adatintegritási szabályokat.
+*   Implementáltuk a biztonsági réteget: JWT alapú hitelesítést, jelszavak titkosítását (Bcrypt.js), és az SQL Injection elleni védelmet.
+*   Integráltuk a kliensoldali állapotkezelést és a szerveroldali, intelligens képfeldolgozó modult (Multer, Sharp).
+*   Kifejlesztettük a valós idejű kommunikációs réteget (Socket.IO) a chat és értesítési rendszerhez.
+*   Konténerizáltuk a teljes alkalmazást (Docker, Docker Compose) és közösen alakítottuk ki a DevOps folyamatokat.
+*   Beállítottuk az automatizált tesztelési környezeteket (Cypress, Selenium) és megírtuk a teszteseteket.
 
 ---
 
