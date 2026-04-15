@@ -1,0 +1,68 @@
+.privacy-page-container {
+  min-height: calc(100vh - 70px - 200px); /* Képernyőmagasság - Header - Footer */
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.privacy-content-wrapper {
+  max-width: 800px;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.privacy-header {
+  border-bottom: 2px solid #00d2ff;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.privacy-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.2rem;
+}
+
+.last-updated {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.privacy-alert-box {
+  background-color: rgba(0, 210, 255, 0.1);
+  border-left: 4px solid #00d2ff;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 30px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.privacy-section {
+  margin-bottom: 30px;
+}
+
+.privacy-section h2 {
+  font-size: 1.3rem;
+  color: #00d2ff;
+  margin-bottom: 15px;
+}
+
+.privacy-section p, .privacy-section ul {
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.privacy-section li {
+  margin-bottom: 8px;
+}

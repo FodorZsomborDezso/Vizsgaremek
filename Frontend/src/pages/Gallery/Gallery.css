@@ -1,18 +1,14 @@
-/* ========================================= */
-/* 1. FŐ ELRENDEZÉS (Széles, 2 Oszlopos)     */
-/* ========================================= */
+/* Alapveto elrendezes */
 .gallery-page-layout {
   display: flex;
-  max-width: 1600px; /* Széles konténer, hogy a 4 oszlop kiférjen */
+  max-width: 1600px;
   margin: 0 auto;
   padding: 30px 20px;
   gap: 40px; 
   align-items: flex-start; 
 }
 
-/* ========================================= */
-/* 2. BAL OLDALI SÁV (SIDEBAR)               */
-/* ========================================= */
+/* Bal oldali sav */
 .gallery-sidebar {
   width: 300px; 
   flex-shrink: 0; 
@@ -113,6 +109,16 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-list-item::after {
+  content: attr(data-text);
+  font-weight: bold;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
 }
 
 .category-list-item:hover {
@@ -125,9 +131,85 @@
   font-weight: bold;
 }
 
-/* ========================================= */
-/* 3. JOBB OLDALI TARTALOM ÉS CÍM            */
-/* ========================================= */
+/* Kategoriacsoport stilusok */
+.category-group-title {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-left: 12px;
+  opacity: 0.7;
+}
+
+.category-group-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keresesi elozmenyek */
+.search-history {
+  margin-top: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.history-icon {
+  margin-right: 5px;
+}
+
+.clear-history-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.clear-history-btn:hover {
+  color: #ff4757;
+}
+
+.history-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.history-tag {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.history-tag:hover {
+  border-color: #00d2ff;
+  color: #00d2ff;
+  background-color: rgba(0, 210, 255, 0.05);
+}
+
+/* Jobb oldali tartalom */
 .gallery-main {
   flex-grow: 1; 
   min-width: 0; 
@@ -135,20 +217,49 @@
 
 .gallery-title {
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 0;
   font-size: 2.2rem;
   color: var(--text-primary);
 }
 
-/* ========================================= */
-/* 4. GALÉRIA RÁCS (Kártyák levágás nélkül)  */
-/* ========================================= */
+.gallery-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.upload-action-btn {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+
+.upload-action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+  color: white;
+}
+
+.upload-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* Galeria racs */
 .masonry-grid {
-  column-count: 3; /* Alap 3 oszlop */
+  column-count: 3;
   column-gap: 30px;
 }
 
-/* Nagy monitoron 4 oszlop */
 @media (min-width: 1400px) {
   .masonry-grid { column-count: 4; }
 }
@@ -158,13 +269,10 @@
   border-radius: 12px;
   border: 1px solid var(--border-color);
   overflow: hidden;
-  
-  /* Masonry szabályok: ne vágja szét a kártyát */
   break-inside: avoid;
   margin-bottom: 30px;
   display: inline-block;
   width: 100%;
-
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -177,8 +285,8 @@
 
 .card-image-wrapper {
   position: relative;
-  min-height: 160px; /* 🔥 Így a lapos képeken is elférnek a gombok */
-  background-color: var(--bg-secondary); /* Ha a kép nem tölti ki, a háttér színe látszik */
+  min-height: 160px;
+  background-color: var(--bg-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -186,10 +294,10 @@
 
 .card-badge {
   position: absolute;
-  bottom: 10px; /* 🔥 Felülről átkerült alulra! */
+  bottom: 10px;
   left: 10px;
-  top: auto; /* Biztosíték, ha korábban volt top beállítás */
-  background: rgba(15, 23, 42, 0.85); /* Kicsit sötétebb, elegánsabb háttér */
+  top: auto;
+  background: rgba(15, 23, 42, 0.85);
   color: white;
   padding: 5px 12px;
   border-radius: 12px;
@@ -197,15 +305,22 @@
   font-weight: bold;
   letter-spacing: 0.5px;
   backdrop-filter: blur(4px);
-  z-index: 2; /* Hogy biztosan a kép felett maradjon */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Finom árnyék */
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* FONTOS: Kép kitöltése levágás nélkül, natív arányban! */
 .card-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Kitölti a rendelkezésre álló helyet */
+  object-fit: cover;
+  opacity: 0;
+  will-change: opacity;
+  transform: translateZ(0);
+  transition: opacity 0.6s ease-in-out, transform 0.3s ease;
+}
+
+.card-image-wrapper img.loaded {
+  opacity: 1;
 }
 
 .gallery-card:hover .card-image-wrapper img {
@@ -233,6 +348,11 @@
   color: var(--text-secondary);
 }
 
+.author-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .card-footer {
   margin-top: 15px;
   padding-top: 15px;
@@ -242,13 +362,23 @@
   align-items: center;
 }
 
-.card-likes {
+.card-likes-btn {
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: transform 0.2s, color 0.2s;
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #ff4757;
   font-weight: bold;
   font-size: 0.95rem;
+}
+
+.card-likes-btn.liked {
+  color: #ff4757;
+}
+
+.card-likes-btn:hover {
+  transform: scale(1.1);
 }
 
 .card-actions {
@@ -275,9 +405,7 @@
   color: var(--accent-color);
 }
 
-/* ========================================= */
-/* 5. GOMBOK ÉS ÜZENETEK                     */
-/* ========================================= */
+/* Gombok es uzenetek */
 .load-more-container {
   display: flex;
   justify-content: center;
@@ -315,9 +443,58 @@
   border: 1px dashed var(--border-color);
 }
 
-/* ========================================= */
-/* 6. OSZTOTT LIGHTBOX A KOMMENTEKNEK        */
-/* ========================================= */
+/* Gyors funkciogombok */
+.quick-actions-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  z-index: 10; 
+}
+
+.gallery-card:hover .quick-actions-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quick-like-btn, .quick-save-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.quick-like-btn:hover { background-color: rgba(255, 255, 255, 0.9); color: #ff4757; transform: scale(1.1); }
+.quick-save-btn:hover { background-color: rgba(0, 210, 255, 0.9); color: white; transform: scale(1.1); }
+
+.quick-like-btn.liked {
+  opacity: 1; 
+  background-color: #ff4757;
+  color: white;
+}
+
+.quick-like-btn.liked:hover { background-color: rgba(255, 255, 255, 0.9); color: #ff4757; }
+
+.gallery-card:has(.quick-like-btn.liked) .quick-actions-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lightbox overlay */
 .lightbox-overlay {
   position: fixed;
   top: 0;
@@ -336,12 +513,12 @@
 
 .lightbox-content {
   display: flex;
-  flex-direction: row; /* FONTOS: Erőltetjük az egymás mellé kerülést */
-  flex-wrap: nowrap;   /* FONTOS: Megtiltjuk a sortörést (egymás alá csúszást) */
+  flex-direction: row;
+  flex-wrap: nowrap;
   background-color: var(--bg-secondary);
   width: 100%;
   max-width: 1400px;
-  height: 90vh; /* Fix magasság a kényelmes kommenteléshez */
+  height: 90vh;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
@@ -372,29 +549,45 @@
   background: var(--accent-color);
 }
 
-/* BAL OLDAL: A kép tökéletes kitöltése */
+/* Lightbox bal oldal */
 .lightbox-left {
-  flex: 1 1 auto; /* Kitölti a maradék helyet, de zsugorodhat is */
-  min-width: 0;   /* A LÉGZÉSVÉDŐ: Ez akadályozza meg, hogy a hatalmas képek kilökjék a kommenteket! */
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: 0;
-  background-color: #000; /* Mozi-mód a kisebb képeknek */
+  position: relative;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-color: #000;
   padding: 20px;
 }
 
-.lightbox-left img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain; /* Sosem vágja le! */
+.lightbox-blur-bg {
+  position: absolute;
+  top: -10%; 
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px) brightness(0.4);
+  z-index: 1;
 }
 
-/* JOBB OLDAL: FIX 400px széles információs sáv */
+.lightbox-main-img {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  border-radius: 5px;
+}
+
+/* Lightbox jobb oldal */
 .lightbox-right {
-  flex: 0 0 400px; /* Szigorúan 400px, se nem nő, se nem csökken */
+  flex: 0 0 400px;
   width: 400px;
   max-width: 400px;
   display: flex;
@@ -408,11 +601,23 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.lightbox-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .lightbox-author {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
+}
+
+.lightbox-author-link {
+  text-decoration: none;
+  margin: 0;
 }
 
 .author-avatar {
@@ -452,6 +657,88 @@
   margin: 0;
 }
 
+.lightbox-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.lightbox-tag {
+  background: linear-gradient(45deg, rgba(0, 210, 255, 0.1), rgba(58, 123, 213, 0.1));
+  color: #00d2ff;
+  border: 1px solid #00d2ff;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lightbox-tag:hover {
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 210, 255, 0.3);
+}
+
+.lightbox-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.lb-action-btn {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.lb-action-btn:hover {
+  background: var(--bg-secondary);
+  border-color: #00d2ff;
+  color: #00d2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 210, 255, 0.1);
+}
+
+.lb-action-btn.liked {
+  color: #ff4757;
+  border-color: rgba(255, 71, 87, 0.3);
+  background: rgba(255, 71, 87, 0.05);
+}
+
+.lb-action-btn.report-btn {
+  color: #e74c3c;
+  margin-left: 7px;
+  margin-right: 10px;
+  border-color: transparent;
+  background: transparent;
+  padding: 10px;
+}
+
+.lb-action-btn.report-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+  transform: none;
+  box-shadow: none;
+}
+
 .lightbox-comments {
   flex: 1;
   padding: 20px;
@@ -476,11 +763,31 @@
   border: 1px solid var(--border-color);
 }
 
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 .comment-user {
   font-weight: bold;
   color: var(--accent-color);
   font-size: 0.85rem;
   margin-bottom: 5px;
+}
+
+.comment-user-link {
+  text-decoration: none;
+  margin: 0;
+}
+
+.comment-report-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.7rem;
 }
 
 .comment-text {
@@ -545,253 +852,7 @@
   transform: scale(1.1);
 }
 
-/* ========================================= */
-/* 7. MOBIL NÉZETEK (RESPONSIVE)             */
-/* ========================================= */
-@media (max-width: 1100px) {
-  .masonry-grid { column-count: 2; }
-}
-
-@media (max-width: 900px) {
-  .gallery-page-layout { flex-direction: column; }
-  .gallery-sidebar { width: 100%; }
-  .sidebar-sticky-content { position: relative; top: 0; }
-  
-  /* Mobilon okosan egymás alá tesszük őket! */
-  .lightbox-content { flex-direction: column; overflow-y: auto; height: 95vh; }
-  .lightbox-left { flex: 0 0 40vh; width: 100%; }
-  .lightbox-right { flex: 1 1 auto; width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--border-color)
-  }
-}
-/* ========================================= */
-/* 8. FEJLÉC ÉS FELTÖLTÉS GOMB               */
-/* ========================================= */
-.gallery-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.upload-action-btn {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(45deg, #00d2ff, #3a7bd5); /* Kellemes színátmenet */
-  color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-}
-
-.upload-action-btn:hover {
-  transform: translateY(-3px); /* Picit felemelkedik, ha ráviszed az egeret */
-  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
-  color: white;
-}
-
-/* Mobilon (kisebb képernyőn) egymás alá tesszük a címet és a gombot */
-@media (max-width: 600px) {
-  .gallery-header-row {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
-  }
-}
-
-/* ========================================= */
-/* GYORS INTERAKCIÓK (HOVER ACTIONS)         */
-/* ========================================= */
-
-.gallery-item .overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 40%, rgba(0,0,0,0.7) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* A gomb felülre, a cím alulra kerül */
-  padding: 15px;
-}
-
-.gallery-item:hover .overlay {
-  opacity: 1;
-}
-
-/* Jobb felső sarok gombjai */
-
-.quick-actions-container {
-  position: absolute;
-  top: -10px;  /* 🔥 Közelebb a tetejéhez (10px helyett) */
-  right: -10px; /* 🔥 Közelebb a széléhez (10px helyett) */
-  display: flex;
-  gap: 5px; /* Kicsit közelebb toljuk egymáshoz a két gombot */
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-  z-index: 2;
-}
-.gallery-card:hover .quick-actions-container {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.quick-like-btn, .quick-save-btn {
-  /* Itt már nincs position absolute, mert a konténer rendezi őket! */
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border: none;
-  width: 35px; /* 🔥 Kisebb, finomabb méret (40px helyett) */
-  height: 35px;
-  border-radius: 50%;
-  color: white;
-  font-size: 1rem; /* Kisebb ikon */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.quick-like-btn:hover { background-color: rgba(255, 255, 255, 0.9); color: #ff4757; transform: scale(1.1); }
-.quick-save-btn:hover { background-color: rgba(0, 210, 255, 0.9); color: white; transform: scale(1.1); }
-
-.quick-like-btn.liked {
-  opacity: 1; 
-  background-color: #ff4757;
-  color: white;
-}
-.quick-like-btn.liked:hover { background-color: rgba(255, 255, 255, 0.9); color: #ff4757; }
-
-/* Hogy a lájkolt kép gombjai látszódjanak akkor is, ha nincs rajta az egér */
-.gallery-card:has(.quick-like-btn.liked) .quick-actions-container {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Alsó infók */
-.item-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  transform: translateY(10px); /* Lentről csúszik be */
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .item-info {
-  transform: translateY(0);
-}
-
-/* ========================================= */
-/* GYORS LÁJK GOMB (HOVER)                   */
-/* ========================================= */
-
-.quick-like-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.gallery-card:hover .quick-like-btn {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.quick-like-btn:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #ff4757;
-  transform: scale(1.1);
-}
-
-.quick-like-btn.liked {
-  opacity: 1; /* A lájkolt képeken mindig látszik a szív */
-  background-color: #ff4757;
-  color: white;
-}
-
-.quick-like-btn.liked:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #ff4757;
-}
-
-/* ========================================= */
-/* LIGHTBOX CÍMKÉK (HASHTAGEK)               */
-/* ========================================= */
-.lightbox-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.lightbox-tag {
-  background: linear-gradient(45deg, rgba(0, 210, 255, 0.1), rgba(58, 123, 213, 0.1));
-  color: #00d2ff;
-  border: 1px solid #00d2ff;
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.lightbox-tag:hover {
-  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 10px rgba(0, 210, 255, 0.3);
-}
-
-/* ========================================= */
-/* GYORS MENTÉS GOMB & MODAL                 */
-/* ========================================= */
-
-/* Gomb a kártya jobb felső sarkába a Lájk gomb mellé/alá */
-.quick-save-btn {
-  position: absolute;
-  top: 15px; /* VAGY tedd top: 65px-re, ha a Lájk gomb alá akarod! */
-  right: 65px; /* A Lájk gomb bal oldalán lesz */
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  font-size: 1.1rem;
-  display: flex; justify-content: center; align-items: center;
-  cursor: pointer; opacity: 0; transform: scale(0.8);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.gallery-card:hover .quick-save-btn { opacity: 1; transform: scale(1); }
-.quick-save-btn:hover { background-color: rgba(0, 210, 255, 0.9); color: white; transform: scale(1.1); }
-
-/* Modal stílusok */
+/* Modal menteshez */
 .save-modal-overlay {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
@@ -808,9 +869,11 @@
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px; background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-color);
 }
+
 .save-modal-header h3 { margin: 0; color: var(--text-primary); }
 
 .save-modal-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
 .save-preview-img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; }
 
 .collections-list {
@@ -822,16 +885,70 @@
   padding: 15px; border-radius: 10px; color: var(--text-primary); font-weight: bold;
   display: flex; align-items: center; cursor: pointer; transition: all 0.2s; text-align: left;
 }
+
 .collection-item-btn:hover { background-color: rgba(0, 210, 255, 0.1); border-color: #00d2ff; }
 
+.modal-bookmark-icon {
+  color: #00d2ff;
+  margin-right: 10px;
+}
+
 .create-collection-form { display: flex; gap: 10px; margin-top: 10px; }
+
 .create-collection-form input {
   flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color);
   background-color: var(--bg-secondary); color: var(--text-primary);
 }
+
 .create-collection-form button {
   padding: 0 20px; border-radius: 10px; background: linear-gradient(45deg, #00d2ff, #3a7bd5);
   color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s;
 }
+
 .create-collection-form button:disabled { opacity: 0.5; cursor: not-allowed; }
 
+/* Jelentes modal */
+.report-modal-index {
+  z-index: 9999;
+}
+
+.report-modal-text {
+  margin-bottom: 15px;
+}
+
+.report-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Mobil nezetek */
+@media (max-width: 1100px) {
+  .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 900px) {
+  .gallery-page-layout { flex-direction: column; }
+  .gallery-sidebar { width: 100%; }
+  .sidebar-sticky-content { position: relative; top: 0; }
+  
+  .lightbox-content { flex-direction: column; overflow-y: auto; height: 95vh; }
+  .lightbox-left { flex: 0 0 40vh; width: 100%; }
+  .lightbox-right { flex: 1 1 auto; width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--border-color) }
+}
+
+@media (max-width: 600px) {
+  .gallery-header-row {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}

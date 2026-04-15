@@ -1,3 +1,4 @@
+/* Fobb kontener beallitasai */
 .admin-container {
   max-width: 1200px;
   margin: 40px auto;
@@ -5,6 +6,7 @@
   color: var(--text-primary);
 }
 
+/* Fejlec stilusai */
 .admin-header h1 {
   display: flex;
   align-items: center;
@@ -12,12 +14,15 @@
   margin-bottom: 30px;
 }
 
+/* Navigacios fulek elrendezese */
 .admin-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
+/* Navigacios fulek gombjainak stilusai */
 .admin-tabs button {
   padding: 10px 20px;
   background-color: var(--bg-secondary);
@@ -29,32 +34,64 @@
   align-items: center;
   gap: 8px;
   font-weight: bold;
+  transition: all 0.2s ease;
 }
 
+/* Aktiv fül stilusai */
 .admin-tabs button.active {
   background-color: var(--accent-color);
   color: white;
   border-color: var(--accent-color);
 }
 
+/* Tartalmi resz hattere es elrendezese */
 .admin-content {
   background-color: var(--bg-secondary);
   border-radius: 12px;
   padding: 20px;
-  overflow-x: auto;
 }
 
+/* Tablazat becsomagolasa a vizszintes gorgeteshez */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Tablazat alapveto stilusai */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 700px;
 }
 
+/* Tablazat cellainak paddingja es szegelye */
 .admin-table th, .admin-table td {
   padding: 15px;
   border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
 }
 
+/* ID oszlop toresenek megakadalyozasa, hogy ne csusszon ket sorba a 3 jegyu ID */
+.admin-table th:first-child, 
+.admin-table td:first-child {
+  white-space: nowrap;
+}
+
+/* Ures tablazat uzenetenek stilusai */
+.table-empty {
+  text-align: center;
+  padding: 30px;
+}
+
+/* Tablazat hosszu uzeneteinek torese */
+.table-message {
+  max-width: 300px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Kiskep stilusai */
 .admin-thumbnail {
   width: 50px;
   height: 50px;
@@ -62,64 +99,127 @@
   border-radius: 8px;
 }
 
-.role-badge {
+/* Interaktiv kiskep hover effektusa */
+.admin-thumbnail.interactive {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.admin-thumbnail.interactive:hover {
+  transform: scale(1.05);
+}
+
+/* Szerepkor es tipus jelvenyek alapstilusai */
+.role-badge, .badge {
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: bold;
+  display: inline-block;
+  color: white;
 }
 
+/* Specifikus jelveny szinek */
 .role-badge.admin { background-color: #ffcc00; color: #000; }
-.role-badge.user { background-color: #3498db; color: #fff; }
+.role-badge.user { background-color: #3498db; }
+.badge-post { background-color: #3498db; }
+.badge-comment { background-color: #9b59b6; }
+.badge-error { background-color: #e74c3c; }
+.badge-success { background-color: #2ecc71; }
+.badge-info { background-color: #3498db; }
 
-.admin-delete-btn {
-  background-color: #e74c3c;
+/* Gombok csoportositasa a tablazatban */
+.action-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Alapveto tablazatbeli akciogombok */
+.btn-action {
   color: white;
   border: none;
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 5px;
+  margin: 0;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
 }
 
-.admin-delete-btn:hover { background-color: #c0392b; }
+.btn-action:hover { opacity: 0.8; }
 
-/* --- MODERÁCIÓS FELUGRÓ ABLAK (MODAL) --- */
-.admin-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000; /* Minden felett legyen */
-  animation: fadeIn 0.2s ease;
+/* Akciogombok specifikus szinei */
+.btn-danger-action { background-color: #e74c3c; }
+.btn-warning { background-color: #f39c12; }
+.btn-success { background-color: #2ecc71; }
+.btn-info { background-color: #3498db; }
+
+/* Hivatkozasok stilusai */
+.admin-link {
+  color: #00d2ff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.admin-modal-content {
-  background-color: var(--bg-primary);
-  padding: 25px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 600px;
-  color: var(--text-primary);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+.admin-link:hover {
+  text-decoration: underline;
+}
+
+/* Altalanos es ikon szovegszinek */
+.text-danger { color: #e74c3c; }
+.text-muted { color: var(--text-secondary); }
+.icon-danger { color: #e74c3c; }
+.loading-screen { text-align: center; margin-top: 50px; color: var(--text-primary); }
+
+/* Hirlevel kontener es kartya */
+.newsletter-container {
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
-.admin-modal-actions {
+.newsletter-card {
+  padding: 20px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.newsletter-desc {
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+/* Form elemek stilusai */
+.form-input, .form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-input { padding: 12px 15px; margin-bottom: 15px; }
+.form-textarea { padding: 15px; resize: vertical; }
+.form-input:focus, .form-textarea:focus { border-color: var(--accent-color); }
+
+.newsletter-actions {
+  margin-top: 15px;
   display: flex;
-  gap: 15px;
-  margin-top: 25px;
   justify-content: flex-end;
 }
 
+/* Altalanos akciogombok */
 .btn-safe {
   background-color: #2c3e50;
   color: white;
@@ -128,9 +228,10 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s;
 }
 
-.btn-safe:hover { background-color: #34495e; }
+.btn-safe:hover:not(:disabled) { background-color: #34495e; }
 
 .btn-danger {
   background-color: #e74c3c;
@@ -140,6 +241,125 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s;
 }
 
 .btn-danger:hover { background-color: #c0392b; }
+
+.btn-disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* Kiskep megtekinto ADMIN LIGHTBOX stilusok (Elkulonitve!) */
+.admin-lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+
+.admin-lightbox-close-btn {
+  position: absolute; top: 20px; right: 20px; z-index: 10000;
+  background: none; border: none; color: white; font-size: 2rem; cursor: pointer;
+}
+
+.admin-lightbox-content {
+  position: relative; max-width: 80vw; max-height: 75vh;
+  display: flex; justify-content: center; align-items: center;
+  border-radius: 12px; overflow: hidden;
+}
+
+.admin-lightbox-bg {
+  position: absolute; top: -10%; left: -10%; right: -10%; bottom: -10%;
+  background-size: cover; background-position: center;
+  filter: blur(30px); opacity: 0.6; z-index: 0;
+}
+
+.admin-lightbox-img {
+  position: relative; z-index: 1; max-height: 75vh; max-width: 100%;
+  object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* Moderacios felugro ablak stilusai */
+.admin-modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 3000;
+  animation: fadeIn 0.2s ease;
+}
+
+.admin-modal-content {
+  background-color: var(--bg-primary); padding: 25px;
+  border-radius: 12px; width: 90%; max-width: 800px;
+  color: var(--text-primary); box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  display: flex; flex-direction: column; max-height: 90vh; overflow-y: auto;
+}
+
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px;
+}
+
+.modal-close-btn { background: none; border: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
+.modal-subtitle { margin-top: 15px; margin-bottom: 10px; }
+
+.modal-preview-container {
+  position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;
+  min-height: 350px; border-radius: 12px; background-color: #111; margin-top: 10px;
+}
+
+.modal-preview-bg {
+  position: absolute; top: -10%; left: -10%; right: -10%; bottom: -10%;
+  background-size: cover; background-position: center; filter: blur(20px); opacity: 0.5; z-index: 0;
+}
+
+.modal-preview-img {
+  position: relative; z-index: 1; max-height: 350px; max-width: 100%;
+  object-fit: contain; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+}
+
+.modal-quote {
+  border-left: 4px solid #e74c3c; padding: 15px; background: var(--bg-secondary);
+  border-radius: 0 8px 8px 0; font-style: italic; margin: 0;
+}
+
+.admin-modal-actions { display: flex; gap: 15px; margin-top: 25px; justify-content: flex-end; }
+
+/* Admin Megerosito ablak stilusai (Elkulonitve!) */
+.admin-confirm-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex; justify-content: center; align-items: center; z-index: 99999;
+}
+
+.admin-confirm-content {
+  background-color: var(--bg-primary); padding: 30px; border-radius: 10px;
+  max-width: 400px; text-align: center; color: var(--text-primary);
+}
+
+.admin-confirm-content h3 { margin-top: 0; color: #e74c3c; }
+.admin-confirm-actions { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+
+.admin-confirm-cancel {
+  background-color: transparent; border: 1px solid var(--text-secondary);
+  color: var(--text-primary); padding: 8px 15px; border-radius: 5px; cursor: pointer;
+}
+
+.admin-confirm-danger {
+  background-color: #e74c3c; border: none; color: white;
+  padding: 8px 15px; border-radius: 5px; cursor: pointer;
+}
+
+/* Animaciok */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Reszponziv beallitasok */
+@media (max-width: 768px) {
+  .admin-header h1 { font-size: 1.8rem; }
+  .admin-tabs { justify-content: center; }
+  .admin-tabs button { flex: 1; justify-content: center; min-width: 120px; }
+  .newsletter-actions { justify-content: stretch; }
+  .newsletter-actions button { width: 100%; }
+  .admin-modal-actions { flex-direction: column; }
+  .admin-modal-actions button { width: 100%; }
+}

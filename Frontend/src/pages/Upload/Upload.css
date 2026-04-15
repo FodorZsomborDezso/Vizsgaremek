@@ -1,3 +1,4 @@
+/* Alapveto elrendezes */
 .upload-page-container {
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@
   padding: 50px;
 }
 
+/* Fejlec */
 .upload-header {
   text-align: center;
   margin-bottom: 40px;
@@ -29,6 +31,10 @@
   justify-content: center;
   gap: 15px;
   font-size: 2.2rem;
+}
+
+.title-icon {
+  color: #00d2ff;
 }
 
 .upload-header p {
@@ -49,9 +55,7 @@
   border: 1px solid rgba(241, 196, 15, 0.3);
 }
 
-/* ========================================= */
-/* OSZTOTT ELRENDEZÉS (Form Layout)          */
-/* ========================================= */
+/* Osztott elrendezes */
 .upload-form-layout {
   display: flex;
   gap: 40px;
@@ -70,9 +74,12 @@
   gap: 20px;
 }
 
-/* ========================================= */
-/* DRAG AND DROP ZÓNA                        */
-/* ========================================= */
+/* Rejtett bemeneti mezo */
+.hidden-input {
+  display: none;
+}
+
+/* Drag and Drop zona */
 .drag-drop-zone {
   flex: 1;
   min-height: 400px;
@@ -116,53 +123,351 @@
   font-size: 0.95rem;
 }
 
-/* ========================================= */
-/* KÉP ELŐNÉZET (PREVIEW)                    */
-/* ========================================= */
-.image-preview-container {
-  position: relative;
+/* Kepek elonezeti resze */
+.preview-section {
   width: 100%;
-  height: 400px;
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  background-color: #000;
+}
+
+.preview-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  padding: 0 5px;
 }
 
-.image-preview {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+.preview-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.remove-image-btn {
-  position: absolute;
-  bottom: 20px;
-  background-color: rgba(0,0,0,0.7);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: bold;
+.btn-clear-all {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  color: #ff4757;
+  padding: 6px 12px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-clear-all:hover {
+  background: #ff4757;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
+}
+
+/* Dinamikus racs elrendezes */
+.previews-grid-container {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.count-1 { grid-template-columns: 1fr; }
+.count-2, .count-3 { grid-template-columns: 1fr 1fr; }
+.count-4 { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+
+/* Elonezeti kepek kartyaja */
+.preview-item {
+  position: relative;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.2s;
+  transform: scale(1);
+  z-index: 1;
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-item.active {
+  border: 3px solid #00d2ff;
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.preview-blur-bg {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.4);
+  z-index: 1;
+}
+
+.preview-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+  border-radius: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-remove-item {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.btn-crop {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(0,0,0,0.7);
+  color: #f1c40f;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-crop:hover {
+  background: rgba(0,0,0,0.9);
+  transform: scale(1.1);
+}
+
+/* Képvágó Modal */
+.crop-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.crop-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.crop-controls {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-secondary);
+  padding: 15px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.crop-controls input[type="range"] {
+  flex: 1;
+}
+
+.crop-aspect-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-secondary);
+  padding: 10px 15px;
+  border-radius: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-aspect {
+  background: #444;
+  color: white;
+  border: 1px solid #555;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.btn-aspect:hover {
+  background: #555;
+}
+
+.btn-aspect.active {
+  background: #00d2ff;
+  color: #000;
+  border-color: #00d2ff;
+}
+
+/* Egyéni megerősítő Modal (Összes törlése) */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
   backdrop-filter: blur(5px);
-  transition: background-color 0.2s;
+  padding: 20px;
 }
 
-.remove-image-btn:hover {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
+.confirm-modal-content {
+  background: var(--bg-secondary);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: scaleIn 0.2s ease-out;
 }
 
-/* ========================================= */
-/* ŰRLAP ELEMEK                              */
-/* ========================================= */
+.confirm-modal-content h3 {
+  margin-top: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.confirm-modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.confirm-modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-confirm-cancel {
+  background: #444;
+  color: white;
+  border: 1px solid #555;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-confirm-cancel:hover {
+  background: #555;
+}
+
+.btn-confirm-delete {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-confirm-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+}
+
+.crop-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-crop-cancel, .btn-crop-confirm {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-crop-cancel {
+  background-color: #ff4757;
+  color: white;
+}
+
+.btn-crop-confirm {
+  background-color: #2ed573;
+  color: white;
+}
+
+.btn-crop-cancel:hover, .btn-crop-confirm:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn-add-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.btn-add-more.single {
+  aspect-ratio: auto;
+  padding: 20px 0;
+}
+
+.btn-add-more span {
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+/* Urlap elemek */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -173,6 +478,11 @@
   font-weight: bold;
   color: var(--text-secondary);
   font-size: 0.95rem;
+}
+
+.active-item-indicator {
+  font-size: 0.8rem;
+  color: #00d2ff;
 }
 
 .modern-input {
@@ -194,108 +504,31 @@
   box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
 }
 
-.submit-upload-btn {
-  margin-top: auto; /* Lenyomja az aljára */
-  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-  color: white;
-  padding: 15px;
+.select-input {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.textarea-no-resize {
+  resize: none;
+}
+
+.btn-copy-to-all {
+  margin-top: 8px;
+  align-self: flex-start;
+  background: none;
   border: none;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.submit-upload-btn:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
-}
-
-.submit-upload-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* ========================================= */
-/* MOBIL NÉZET                               */
-/* ========================================= */
-@media (max-width: 900px) {
-  .upload-form-layout {
-    flex-direction: column;
-  }
-  
-  .drag-drop-zone, .image-preview-container {
-    min-height: 300px;
-    height: 300px;
-  }
-
-  .upload-content-wrapper {
-    padding: 30px 20px;
-  }
-}
-
-/* ========================================= */
-/* KÉPVÁGÓ (CROPPER) STÍLUSOK                */
-/* ========================================= */
-.crop-modal-overlay {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9); display: flex; justify-content: center; align-items: center;
-  z-index: 6000; backdrop-filter: blur(5px);
-}
-
-.crop-modal-content {
-  background-color: var(--bg-primary); width: 90%; max-width: 700px;
-  border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid var(--border-color);
-}
-
-.crop-modal-content h2 {
-  margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 10px;
-}
-
-.crop-container {
-  position: relative; width: 100%; height: 400px; background-color: #333;
-  border-radius: 10px; overflow: hidden;
-}
-
-.crop-controls {
-  display: flex; justify-content: center; padding: 10px 0;
-}
-
-.zoom-slider {
-  width: 60%; cursor: pointer; accent-color: #00d2ff;
-}
-
-.crop-modal-actions {
-  display: flex; justify-content: flex-end; gap: 15px;
-}
-
-/* Új gomb az Eredeti mérethez a vágóban */
-.btn-secondary {
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: transparent;
-  border: 2px solid #00d2ff;
   color: #00d2ff;
+  cursor: pointer;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-weight: bold;
 }
 
-.btn-secondary:hover {
-  background: rgba(0, 210, 255, 0.1);
-  transform: translateY(-2px);
-}
-/* ========================================= */
-/* CÍMKÉK (HASHTAGEK) STÍLUSAI               */
-/* ========================================= */
+/* Cimkek (Hashtagek) */
 .tags-input-container {
   display: flex;
   flex-wrap: wrap;
@@ -355,4 +588,80 @@
 @keyframes scaleIn {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+/* Kuldos gomb es folyamatjelzo */
+.submit-upload-btn {
+  margin-top: auto;
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-upload-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
+}
+
+.submit-upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.check-icon {
+  margin-right: 8px;
+}
+
+.progress-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  min-width: 35px;
+}
+
+/* Mobil Nezet */
+@media (max-width: 900px) {
+  .upload-form-layout {
+    flex-direction: column;
+  }
+  
+  .drag-drop-zone {
+    min-height: 250px;
+  }
+
+  .upload-content-wrapper {
+    padding: 30px 20px;
+  }
+
+  .previews-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }

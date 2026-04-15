@@ -1,3 +1,4 @@
+/* Globális színváltozók sötét témához */
 :root {
   
   --bg-primary: #1a1a2e;
@@ -14,6 +15,7 @@ html {
   scrollbar-gutter: stable; 
 }
 
+/* Globális színváltozók világos témához */
 [data-theme="light"] {
   
   --bg-primary: #f4f6f8;
@@ -25,6 +27,7 @@ html {
   --border-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Alapvető oldalelrendezés és tipográfia */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -47,17 +50,15 @@ body {
   margin: 0 auto;
 }
 
-/* ========================================= */
-/* FELUGRÓ ABLAKOK LÁGY ANIMÁCIÓJÁ             */
-/* ========================================= */
+/* Felugró ablakok globális animációi */
 
-/* 1. A sötét háttér finom megjelenése */
+/* Sötét háttér áttűnése */
 @keyframes fadeInOverlay {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* 2. Az ablak beúszása (kicsit lentről, picit felnagyítva) */
+/* Ablak beúszó animációja */
 @keyframes slideUpModal {
   from { 
     opacity: 0; 
@@ -68,23 +69,118 @@ body {
     transform: translateY(0) scale(1); 
   }
 }
+
 .lightbox-content, 
 .idea-modal-content, 
 .create-idea-modal {
-  /* A meglévő kódod... */
   background-color: var(--bg-secondary);
-  /* ... */
-
-  /* 🔥 ÚJ: Ezt a sort add hozzá! (A cubic-bezier adja azt a szép, ruganyos megállást) */
   animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 p, h1, h2, h3, h4, h5, h6, span, blockquote, td, li, .chat-bubble, .notif-text {
-  /* Ha egy szó hosszabb, mint a rendelkezésre álló hely, erőszakkal eltöri a következő sorba */
+  /* Szövegtörés kezelése hosszú szavak esetén */
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  
-  /* Ha a böngésző ismeri a nyelvet, betesz egy kötőjelet a töréshez */
   hyphens: auto; 
 }
+
+/* Képvágó felugró ablak stílusai */
+.crop-modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); display: flex; justify-content: center; align-items: center;
+  z-index: 6000; backdrop-filter: blur(5px);
+}
+
+.crop-modal-content {
+  background-color: var(--bg-primary); width: 90%; max-width: 700px;
+  border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid var(--border-color);
+}
+
+.crop-modal-content h2 {
+  margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 10px;
+}
+
+.crop-container {
+  position: relative; width: 100%; height: 400px; background-color: #333;
+  border-radius: 10px; overflow: hidden;
+}
+
+.crop-controls {
+  display: flex; justify-content: center; padding: 10px 0;
+}
+
+.zoom-slider {
+  width: 60%; cursor: pointer; accent-color: #00d2ff;
+}
+
+.crop-modal-actions {
+  display: flex; justify-content: flex-end; gap: 15px;
+}
+
+/* Töltést jelző skeleton animációk */
+@keyframes skeleton-pulse {
+  0% { background-color: var(--bg-primary); opacity: 0.6; }
+  50% { background-color: var(--border-color); opacity: 0.3; }
+  100% { background-color: var(--bg-primary); opacity: 0.6; }
+}
+
+/* Galéria elemek töltőképernyője */
+.skeleton-card { pointer-events: none; }
+.skeleton-image { height: 250px; width: 100%; animation: skeleton-pulse 1.5s infinite ease-in-out; }
+.skeleton-line { height: 15px; border-radius: 4px; margin-bottom: 10px; animation: skeleton-pulse 1.5s infinite ease-in-out; }
+.title-line { width: 70%; height: 22px; margin-bottom: 15px; }
+.author-line { width: 40%; }
+.skeleton-circle { width: 35px; height: 35px; border-radius: 50%; animation: skeleton-pulse 1.5s infinite ease-in-out; }
+.skeleton-footer { border-top: none; }
+
+/* Ötletek töltőképernyője */
+.idea-skeleton-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: skeleton-pulse 1.5s infinite ease-in-out;
+}
+.idea-skeleton-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.idea-skeleton-badge { width: 80px; height: 20px; border-radius: 12px; background: var(--border-color); }
+.idea-skeleton-date { width: 100px; height: 15px; border-radius: 4px; background: var(--border-color); }
+.idea-skeleton-title { width: 60%; height: 24px; border-radius: 4px; background: var(--border-color); margin-bottom: 10px; }
+.idea-skeleton-desc { width: 100%; height: 60px; border-radius: 4px; background: var(--border-color); }
+.idea-skeleton-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 15px; }
+.idea-skeleton-author { width: 120px; height: 20px; border-radius: 4px; background: var(--border-color); }
+
+/* Megerősítő felugró ablak globális stílusai */
+.confirm-modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center;
+  z-index: 9999; backdrop-filter: blur(5px);
+  animation: fadeInOverlay 0.3s ease-out forwards;
+}
+
+.confirm-modal-content {
+  background-color: var(--bg-primary); width: 90%; max-width: 400px;
+  border-radius: 15px; padding: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1px solid var(--border-color); text-align: center;
+  animation: slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.confirm-modal-content h3 { margin-top: 0; color: var(--text-primary); margin-bottom: 10px; }
+.confirm-modal-content p { color: var(--text-secondary); margin-bottom: 25px; line-height: 1.5; }
+
+.confirm-actions { display: flex; justify-content: center; gap: 15px; }
+
+.confirm-btn-cancel, .confirm-btn-danger {
+  padding: 10px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: transform 0.2s, background-color 0.2s; font-size: 0.95rem;
+}
+
+.confirm-btn-cancel { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); }
+.confirm-btn-cancel:hover { background-color: var(--bg-secondary); color: var(--text-primary); }
+
+.confirm-btn-danger { background-color: #ff4757; color: white; }
+.confirm-btn-danger:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4); }

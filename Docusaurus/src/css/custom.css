@@ -1,0 +1,313 @@
+/* c:\Users\fodor\Desktop\Vizsgaremek\Vizsgaremek\Docusaurus\src\css\custom.css */
+
+:root {
+  /* ArtisticEye Színek */
+  --ifm-color-primary: #00d2ff;
+  --ifm-color-primary-dark: #00bde6;
+  --ifm-color-primary-darker: #00b2d9;
+  --ifm-color-primary-darkest: #0093b3;
+  --ifm-color-primary-light: #1ae5ff;
+  --ifm-color-primary-lighter: #33e9ff;
+  --ifm-color-primary-lightest: #80f3ff;
+  
+  --ifm-navbar-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --ifm-navbar-height: 70px;
+}
+
+[data-theme='dark'] {
+  --ifm-background-color: #0f172a; /* A galéria sötét háttere */
+  --ifm-background-surface-color: #1e293b;
+  --ifm-navbar-background-color: #1e293b; /* Fejléc színe megegyezik a footer-rel */
+  --ifm-navbar-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================= */
+/* NAVBAR (HEADER) STÍLUSOK                  */
+/* ========================================= */
+.navbar {
+  border-bottom: none;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar__logo {
+  transition: transform 0.3s ease;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+}
+
+.navbar__brand {
+  transition: transform 0.3s ease;
+}
+
+.navbar__brand:hover .navbar__logo {
+  transform: scale(1.05);
+}
+
+/* Asztali navigációs menü és linkek elrendezése */
+.navbar__item.navbar__link {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  margin: 0 8px;
+  border: 2px solid var(--ifm-font-color-base);
+  border-radius: 0;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Linkek hover állapota */
+.navbar__item.navbar__link:hover,
+.navbar__item.navbar__link--active {
+  color: #00d2ff;
+  border-color: #00d2ff;
+  text-decoration: none;
+}
+
+/* Lenyíló (dropdown) menük esetében letiltjuk a keretet */
+.navbar__item.dropdown > .navbar__link {
+  border-color: transparent;
+}
+.navbar__item.dropdown > .navbar__link:hover,
+.navbar__item.dropdown > .navbar__link--active {
+  border-color: transparent;
+  color: #00d2ff;
+}
+
+/* ==================================================================
+   VISSZA AZ ALKALMAZÁSBA GOMB (CTA)
+   ================================================================== */
+.navbar__item.nav-cta-button {
+  padding: 10px 20px !important;
+  border-radius: 7px !important;
+  border: 1px solid rgb(46, 137, 255) !important;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: transparent !important;
+  color: rgb(0, 153, 255) !important;
+  box-shadow: 0 0 0 0 transparent;
+  transition: all 0.2s ease-in !important;
+  margin-left: 10px;
+}
+
+.navbar__item.nav-cta-button:hover {
+  background: rgb(0, 195, 255) !important;
+  color: #fff !important;
+  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+  transition: all 0.2s ease-out !important;
+  border-color: transparent !important;
+}
+
+/* Téma váltó ikon (Nap/Hold) effektek */
+.clean-btn.navbar__toggle, 
+button[class*='ColorModeToggle'] {
+  transition: transform 0.4s ease;
+}
+
+button[class*='ColorModeToggle']:hover {
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* ========================================= */
+/* FOOTER STÍLUSOK                           */
+/* ========================================= */
+
+.footer {
+  background-color: var(--ifm-background-surface-color);
+  padding: 60px 20px 20px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Footer logó animációja */
+.footer__logo {
+  height: 45px;
+  max-width: 100%;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+  margin-bottom: 20px;
+}
+
+.footer__logo:hover {
+  transform: scale(1.05);
+}
+
+/* Footer fejléc animáció (footer-heading-effect replika) */
+.footer__title {
+  position: relative;
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid var(--ifm-font-color-base);
+  text-transform: uppercase;
+  color: var(--ifm-font-color-base);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  z-index: 2; /* Szöveg legyen felül */
+}
+
+/* Y tengelyes animáció takarója */
+.footer__title::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% - 8px);
+  background-color: var(--ifm-background-surface-color);
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  transform: scaleY(1);
+  z-index: -1; /* Szöveg alatt */
+}
+
+.footer__title:hover::before {
+  transform: scaleY(0);
+}
+
+/* X tengelyes animáció takarója */
+.footer__title::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  height: calc(100% + 4px);
+  width: calc(100% - 8px);
+  background-color: var(--ifm-background-surface-color);
+  transition: transform 0.2s ease-in-out 0.2s, background-color 0.3s ease;
+  transform: scaleX(1);
+  z-index: -1;
+}
+
+.footer__title:hover::after {
+  transform: scaleX(0);
+}
+
+/* Hover szöveg és keret szín */
+.footer__title:hover {
+  color: #00d2ff;
+  border-color: #00d2ff;
+}
+
+/* Footer linkek hover effektusa (behúzás és neon árnyék) */
+.footer__link-item {
+  transition: color 0.3s ease, padding-left 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.footer__link-item:hover {
+  color: #00d2ff;
+  padding-left: 8px;
+  text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+  text-decoration: none;
+}
+
+/* Footer alsó sáv (copyright és vonal) */
+.footer__bottom {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ========================================= */
+/* HOMEPAGE HERO BANNER                      */
+/* ========================================= */
+
+.hero.hero--primary {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #003f5c, #00d2ff);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding: 6rem 0;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid var(--ifm-color-primary);
+  box-shadow: 0 5px 20px rgba(0, 210, 255, 0.2);
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero__logo {
+  max-width: 500px;
+  width: 90%;
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  max-width: 700px;
+  margin: 20px auto 40px;
+}
+
+/* Fő CTA gomb a hero-ban */
+.hero .button--secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 15px 35px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.2);
+}
+
+.hero .button--secondary:hover {
+  background-color: white;
+  color: #0f172a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4);
+}
+
+/* ========================================= */
+/* HOMEPAGE FEATURE CARDS                    */
+/* ========================================= */
+
+.feature-card {
+  background: rgba(30, 41, 59, 0.5); /* --ifm-background-surface-color with alpha */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background: rgba(30, 41, 59, 0.8);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+}
+
+.feature-card h3 {
+  color: var(--ifm-color-primary);
+  margin-top: 1.5rem;
+}
+
+[data-theme='light'] .feature-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='light'] .feature-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+}

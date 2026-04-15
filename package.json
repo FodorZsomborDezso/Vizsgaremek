@@ -1,0 +1,20 @@
+{
+  "name": "vizsgaremek-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd Frontend && npm install && cd ../Backend && npm install && cd ../Docusaurus && npm install",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down -v --remove-orphans",
+    "start": "npm run db:down && npm run db:up && echo \"Adatbázis betöltése folyamatban (kérlek várj ~30 másodpercet, amíg a Docker beállítja az adatokat)...\" && node -e \"setTimeout(() => console.log('Adatbázis kész, szerverek indítása!'), 30000)\" && node startup-info.js && concurrently --kill-others-on-fail -n \"BACKEND,FRONTEND,DOCS\" -c \"cyan,magenta,green\" \"npm run start-backend\" \"npm run start-frontend\" \"npm run start-docusaurus\"",
+    "start-docusaurus": "cd Docusaurus && npm run start",
+    "start-backend": "cd Backend && npx nodemon server.js",
+    "start-frontend": "cd Frontend && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.41.0"
+  }
+}

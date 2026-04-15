@@ -24,6 +24,14 @@ import Login from './pages/RegisterAndLogin/Login';
 import Register from './pages/RegisterAndLogin/Register';
 import Profile from './pages/Profile/Profile';
 
+import ForgotPassword from './pages/RegisterAndLogin/ForgotPassword/ForgotPassword'; 
+import ResetPassword from './pages/RegisterAndLogin/ForgotPassword/ResetPassword';
+import VerificationFailed from './pages/RegisterAndLogin/VerificationFailed';
+
+import Privacy from './pages/Privacy/Privacy';
+import Terms from './pages/Privacy/Terms';
+import Imprint from './pages/Privacy/Imprint';
+
 import './App.css';
 
 function App() {
@@ -50,22 +58,28 @@ function App() {
         <Routes>
           
           <Route path="/" element={<Home />} />
-          <Route path="/gallery" element={<Gallery />} /> {/* <--- ÚJ */}
+          <Route path="/gallery" element={<Gallery />} /> 
           <Route path="/messages" element={<Messages />} />
-          <Route path="/upload" element={<Upload />} />   {/* <--- ÚJ */}
-          <Route path="/ideas" element={<Ideas />} /> {/* <--- ÚJ ÚTVONAL */}
+          <Route path="/upload" element={<Upload />} />  
+          <Route path="/ideas" element={<Ideas />} /> 
           <Route path="/admin" element={<Admin />} />
           <Route path="/user/:username" element={<PublicProfile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/verification-failed" element={<VerificationFailed />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/adatvedelem" element={<Privacy />} />
+          <Route path="/aszf" element={<Terms />} />
+          <Route path="/impresszum" element={<Imprint />} />
         </Routes>
       </main>
 
-      <Footer />
+      <Footer theme={theme} toggleTheme={toggleTheme} />
     </div>
   );
 }

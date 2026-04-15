@@ -1,10 +1,9 @@
-/* src/pages/Auth.css */
-
+/* Alapveto elrendezes */
 .auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh; /* Hogy középen legyen */
+  min-height: 80vh; 
   padding: 20px;
 }
 
@@ -19,9 +18,8 @@
   animation: slideUp 0.5s ease-out;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.register-card {
+  max-width: 500px !important;
 }
 
 .auth-title {
@@ -31,6 +29,14 @@
   font-size: 2rem;
 }
 
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+/* Urlap elrendezes */
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -49,22 +55,38 @@
   font-weight: 600;
 }
 
+/* Beviteli mezok */
 .form-group input {
+  width: 100%;
   padding: 12px 15px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-size: 1rem;
+  box-sizing: border-box;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--accent-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
 }
 
+/* Chrome Autofill stilus felulirasa */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--bg-primary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Gombok */
 .auth-btn {
   margin-top: 10px;
   padding: 12px;
@@ -76,13 +98,24 @@
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s, filter 0.2s;
+  width: 100%;
 }
 
-.auth-btn:hover {
+.auth-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.1);
 }
 
+.auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.continue-btn {
+  margin-top: 15px;
+}
+
+/* Lablec es uzenetek */
 .auth-footer {
   margin-top: 20px;
   text-align: center;
@@ -93,9 +126,9 @@
 .auth-footer a {
   color: var(--accent-color);
   font-weight: bold;
+  text-decoration: none;
 }
 
-/* Hibaüzenet stílusa */
 .error-msg {
   background-color: rgba(255, 0, 85, 0.1);
   color: #ff0055;
@@ -104,4 +137,285 @@
   font-size: 0.9rem;
   text-align: center;
   border: 1px solid rgba(255, 0, 85, 0.3);
+  margin-bottom: 20px;
+}
+
+.success-msg {
+  background-color: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  margin-bottom: 20px;
+}
+
+/* --- REGISZTRACIOS ES LOGIN SPECIFIKUS OSZTALYOK --- */
+
+/* Jelszo elrejtes/mutatas */
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+/* Jelszo erosseseg mero */
+.password-strength-container {
+  margin-top: 8px;
+}
+
+.strength-bar-bg {
+  height: 4px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strength-bar-fill {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.strength-label {
+  text-align: right;
+  font-size: 0.75rem;
+  margin-top: 3px;
+  font-weight: bold;
+}
+
+/* Feltetelek elfogadasa es Emlekezz ram gomb */
+.terms-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.terms-checkbox {
+  width: auto;
+}
+
+.terms-label {
+  margin: 0;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.terms-link {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+.login-options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.remember-me-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.remember-me-checkbox {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.remember-me-label {
+  margin: 0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.forgot-password-link {
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Profilkep feltoltes */
+.avatar-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.avatar-preview-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.avatar-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder-icon {
+  font-size: 30px;
+  color: var(--text-secondary);
+}
+
+.avatar-upload-label {
+  color: var(--accent-color);
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.hidden-input {
+  display: none;
+}
+
+/* Megerosito (Verify) Urlap */
+.verify-text {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.verify-label {
+  text-align: center;
+}
+
+.verify-input {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 8px;
+  padding: 15px;
+}
+
+.verify-footer {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.back-to-register-link {
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+.resend-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Profilkep Vago (Cropper) Modal */
+.crop-modal-overlay {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crop-modal-content {
+  background-color: var(--bg-primary);
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.crop-modal-title {
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.crop-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.crop-controls {
+  margin-top: 20px;
+}
+
+.zoom-slider {
+  width: 100%;
+}
+
+.crop-modal-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.crop-cancel-btn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.crop-save-btn {
+  flex: 1;
+  background: #00d2ff;
+  border: none;
+  color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Animaciok */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

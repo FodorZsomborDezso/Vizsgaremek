@@ -1,23 +1,242 @@
-.about-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; color: var(--text-primary); }
-.about-hero { text-align: center; margin-bottom: 60px; }
-.about-hero h1 { font-size: 3rem; margin-bottom: 10px; }
-.about-hero h1 span { color: #00d2ff; }
-.about-hero p { font-size: 1.2rem; color: var(--text-secondary); }
+/* Fobb kontener beallitasai */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: var(--text-primary);
+}
 
-.about-mission { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
-.mission-card { background-color: var(--bg-secondary); padding: 40px 30px; border-radius: 15px; text-align: center; border: 1px solid var(--border-color); transition: transform 0.3s; }
-.mission-card:hover { transform: translateY(-10px); border-color: #00d2ff; }
-.mission-icon { font-size: 3rem; color: #00d2ff; margin-bottom: 20px; }
-.mission-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-.mission-card p { color: var(--text-secondary); line-height: 1.6; }
+/* Fejlec stilusai */
+.about-hero {
+  margin-bottom: 60px;
+  text-align: center;
+}
 
-.about-developer { background-color: var(--bg-secondary); padding: 50px; border-radius: 15px; border: 1px solid var(--border-color); }
-.about-developer h2 { text-align: center; margin-top: 0; margin-bottom: 40px; font-size: 2rem; }
-.dev-profile { display: flex; align-items: center; gap: 40px; }
-.dev-avatar { border-radius: 50%; border: 4px solid #00d2ff; width: 150px; height: 150px; }
-.dev-info h3 { margin-top: 0; color: #00d2ff; }
-.dev-info p { color: var(--text-secondary); line-height: 1.6; font-size: 1.05rem; }
+/* Focim meretezese */
+.about-hero h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
 
+/* Focim kiemelt szinene */
+.about-hero h1 span {
+  color: #00d2ff;
+}
+
+/* Fejlec bevezeto szovege */
+.about-hero p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* Kuldetes kartyak grid elrendezese */
+.about-mission {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+/* Egyedi kuldetes kartya stilusai */
+.mission-card {
+  padding: 40px 30px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Kartya hover effektusa */
+.mission-card:hover {
+  transform: translateY(-10px);
+  border-color: #00d2ff;
+}
+
+/* Kartya ikonjanak meretezese es szine */
+.mission-icon {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #00d2ff;
+}
+
+/* Kartya cimenek stilusai */
+.mission-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+/* Kartya szovegenek stilusai */
+.mission-card p {
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Fejlesztoi szekcio befoglalo doboza */
+.about-developer {
+  padding: 50px 30px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+}
+
+/* Fejlesztoi szekcio cime */
+.about-developer h2 {
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Fejlesztoi profil flex elrendezese */
+.dev-profile {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Utolso profil also szegelyenek elrejtese */
+.dev-profile:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Profilok kozotti tavolsag */
+.dev-profile + .dev-profile {
+  margin-top: 40px;
+}
+
+/* Profilkep stilusai */
+.dev-avatar {
+  width: 150px;
+  height: 150px;
+  border: 4px solid #00d2ff;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Profilkep hover effektusa */
+.dev-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Profilkep helyettesitovenek stilusai */
+.dev-avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  padding: 5px;
+  color: var(--text-secondary);
+  border: 4px solid var(--border-color);
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Helyettesito kep hover effektusa */
+.dev-avatar-placeholder:hover {
+  transform: scale(1.05);
+  color: #00d2ff;
+  border-color: #00d2ff;
+}
+
+/* Nev hivatkozas stilusai */
+.dev-name-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+/* Nev hivatkozas hover effektusa */
+.dev-name-link:hover {
+  color: #00d2ff;
+}
+
+/* Profil leiras stilusai */
+.dev-info p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* Betolto szoveg stilusai */
+.loading-text {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+}
+
+/* Dokumentacios blokk stilusai */
+.documentation-section {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Dokumentacios gomb stilusai */
+.documentation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 35px;
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Gomb ikonjanak igazitasa */
+.doc-icon {
+  font-size: 1.2rem;
+}
+
+/* Dokumentacios gomb hover effektusa */
+.documentation-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+}
+
+/* Dokumentacios szoveg stilusai */
+.documentation-section p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 15px;
+}
+
+/* Mobil reszponziv beallitasok */
 @media (max-width: 768px) {
-  .dev-profile { flex-direction: column; text-align: center; }
+  /* Fejlec cimenek csokkentese mobilon */
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  /* Kepernyo szeleinek igazitasa mobilon */
+  .about-developer {
+    padding: 30px 15px;
+  }
+
+  /* Profil elrendezes oszloposra valtasa mobilon */
+  .dev-profile {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  /* Dokumentacios gomb igazitasa mobilon */
+  .documentation-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

@@ -1,3 +1,4 @@
+/* Alapveto layout beallitasok */
 .home-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -5,9 +6,7 @@
   overflow: hidden;
 }
 
-/* ========================================= */
-/* HERO SZEKCIÓ                              */
-/* ========================================= */
+/* Hero szekcio */
 .home-hero {
   display: flex;
   align-items: center;
@@ -45,6 +44,47 @@
   margin-bottom: 40px;
 }
 
+/* Kereso urlap elemei */
+.hero-search-form {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+  max-width: 450px;
+}
+
+.hero-search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.hero-search-btn {
+  background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+}
+
+.hero-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 210, 255, 0.5);
+}
+
+/* Gombok */
 .hero-buttons {
   display: flex;
   gap: 20px;
@@ -87,9 +127,7 @@
   color: #00d2ff;
 }
 
-/* ========================================= */
-/* DINAMIKUS FOTÓKOLLÁZS                     */
-/* ========================================= */
+/* Dinamikus fotokollazs */
 .hero-image-collage {
   flex: 1;
   position: relative;
@@ -104,7 +142,7 @@
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   transition: transform 0.4s ease;
-  border: 4px solid var(--bg-primary); /* Szép keret a lebegéshez */
+  border: 4px solid var(--bg-primary);
 }
 
 .collage-img img {
@@ -135,7 +173,6 @@
 
 .collage-img:hover .img-credit { opacity: 1; }
 
-/* A 3 kép aszimmetrikus elrendezése */
 .img-main {
   width: 350px;
   height: 480px;
@@ -161,6 +198,10 @@
   z-index: 3;
 }
 
+.img-main:hover {
+  transform: translateY(calc(-50% - 10px)) scale(1.05) !important;
+}
+
 .collage-loading, .collage-empty {
   height: 100%;
   display: flex;
@@ -174,9 +215,7 @@
   text-align: center;
 }
 
-/* ========================================= */
-/* JELLEMZŐK SZEKCIÓ (Kártyák)               */
-/* ========================================= */
+/* Jellemzok szekcio kartyai */
 .home-features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -208,6 +247,21 @@
   margin-bottom: 20px;
 }
 
+.icon-gallery {
+  color: #00d2ff;
+  background-color: rgba(0, 210, 255, 0.1);
+}
+
+.icon-ideas {
+  color: #f1c40f;
+  background-color: rgba(241, 196, 15, 0.1);
+}
+
+.icon-community {
+  color: #2ecc71;
+  background-color: rgba(46, 204, 113, 0.1);
+}
+
 .feature-card h3 {
   font-size: 1.5rem;
   color: var(--text-primary);
@@ -224,20 +278,155 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #00d2ff;
   font-weight: bold;
   text-decoration: none;
   font-size: 1rem;
   transition: gap 0.2s;
 }
 
+.link-gallery { color: #00d2ff; }
+.link-ideas { color: #f1c40f; }
+.link-community { color: #2ecc71; }
+
 .feature-card:hover .feature-link {
-  gap: 12px; /* A kis nyíl megmozdul hoverre */
+  gap: 12px;
 }
 
-/* ========================================= */
-/* ANIMÁCIÓK ÉS RESZPONZIVITÁS               */
-/* ========================================= */
+/* Ranglista szekcio */
+.home-leaderboard {
+  margin-top: 60px;
+  padding: 40px;
+  background-color: var(--bg-secondary);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.leaderboard-header h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboard-header p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.leaderboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.leaderboard-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--bg-primary);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.leaderboard-card:hover {
+  transform: translateY(-5px);
+  border-color: #00d2ff;
+  box-shadow: 0 5px 15px rgba(0, 210, 255, 0.1);
+}
+
+.rank-badge {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--text-secondary);
+  min-width: 30px;
+  text-align: left;
+}
+
+.rank-1 { color: #f1c40f; font-size: 1.5rem; text-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+.rank-2 { color: #bdc3c7; font-size: 1.4rem; }
+.rank-3 { color: #cd7f32; font-size: 1.3rem; }
+
+.leaderboard-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.leaderboard-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+}
+
+.leaderboard-avatar-placeholder {
+  font-size: 50px;
+  color: var(--text-secondary);
+}
+
+.leaderboard-info {
+  flex: 1;
+  text-align: left;
+  min-width: 0;
+}
+
+.leaderboard-name {
+  margin: 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaderboard-username {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.leaderboard-likes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Kiegeszito ikon stilusok */
+.icon-right-margin {
+  margin-left: 8px;
+}
+
+.icon-medal {
+  color: #f1c40f;
+  margin-right: 10px;
+}
+
+.heart-icon {
+  color: #ff4757;
+}
+
+.empty-leaderboard {
+  grid-column: 1 / -1;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Animaciok */
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-50px); }
   to { opacity: 1; transform: translateX(0); }
@@ -248,6 +437,7 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
+/* Reszponziv beallitasok (Tabletek) */
 @media (max-width: 1024px) {
   .hero-title { font-size: 3rem; }
   .img-main { width: 300px; height: 400px; }
@@ -255,24 +445,23 @@
   .img-sub-bottom { width: 200px; height: 220px; }
 }
 
+/* Reszponziv beallitasok (Mobilok) */
 @media (max-width: 768px) {
   .home-hero { flex-direction: column; text-align: center; }
   .hero-text-content { max-width: 100%; }
+  
+  .hero-search-form { 
+    margin: 0 auto 25px auto; 
+    max-width: 100%; 
+  }
+  
   .hero-buttons { justify-content: center; flex-wrap: wrap; }
   .hero-image-collage { height: 400px; margin-top: 40px; }
   
   .img-main { left: 50%; transform: translate(-50%, -50%); width: 250px; height: 350px; z-index: 3;}
   .img-sub-top { right: 0; width: 150px; height: 200px; z-index: 1;}
   .img-sub-bottom { left: 0; bottom: 0; width: 160px; height: 180px; z-index: 2;}
-}
 
-/* Javítás a legnagyobb kép lecsúszására (Desktop) */
-.img-main:hover {
-  transform: translateY(calc(-50% - 10px)) scale(1.05) !important;
-}
-
-/* Javítás a legnagyobb kép lecsúszására (Mobil nézeten) */
-@media (max-width: 768px) {
   .img-main:hover {
     transform: translate(-50%, calc(-50% - 10px)) scale(1.05) !important;
   }

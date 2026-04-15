@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+// Görgetés az oldal tetejére útvonalváltáskor
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
+  // Képernyő pozíciójának visszaállítása a lap tetejére
   useEffect(() => {
-    // Amikor az útvonal (pathname) megváltozik, tekerjen a tetejére!
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return null; // Ez egy láthatatlan komponens, nem renderel semmit
+  return null;
 };
 
 export default ScrollToTop;

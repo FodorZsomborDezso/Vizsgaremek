@@ -3,6 +3,7 @@ import { FaCompass, FaHome } from 'react-icons/fa';
 import './NotFound.css';
 
 const NotFound = () => {
+  // A 404-es hibaoldal renderelese
   return (
     <div className="notfound-container">
       <div className="notfound-content">
@@ -15,7 +16,7 @@ const NotFound = () => {
           Úgy tűnik, ez az oldal jelenleg egy üres vászon. A keresett tartalom nem létezik, esetleg megváltozott a címe, vagy már törölték.
         </p>
         <Link to="/" className="notfound-btn">
-          <FaHome style={{ marginRight: '10px' }} /> Vissza a biztonságba
+          <FaHome className="btn-icon" /> Vissza a biztonságba
         </Link>
       </div>
     </div>

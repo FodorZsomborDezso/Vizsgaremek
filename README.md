@@ -5,92 +5,103 @@
 
 ---
 
+# ArtisticEye
+
+Modern, interaktív képmegosztó és közösségi platform digitális alkotóknak.
+
 ## Tartalomjegyzék
 - [Projekt bemutatása](#projekt-bemutatása)
-- [Főbb funkciók](#főbb-funkciók)
+- [Főbb funkciók és Architektúra](#főbb-funkciók-és-architektúra)
 - [Alkalmazott technológiák](#alkalmazott-technológiák)
-- [Fejlesztők](#fejlesztők)
-- [Telepítés és Futtatás](#telepítés-és-futtatás-docker-környezetben)
+- [Fejlesztők és Felelősségi körök](#fejlesztők-és-felelősségi-körök)
+- [Telepítés és Futtatás (Docker)](#telepítés-és-futtatás-docker)
 
 ## Projekt bemutatása
-Az **ArtisticEye** egy vizsgaremekként készült teljes értékű közösségi képmegosztó és platform. Ötvözi a vizuális galériák (pl. Pinterest) élményét a közösségi média funkcióival (követés, privát chat, valós idejű értesítések). A cél egy olyan aktív, kreatív közösség kialakítása, ahol a felhasználók inspirációt meríthetnek egymás munkáiból, visszajelzéseket adhatnak és kapcsolatokat építhetnek.
 
-## Főbb funkciók
+Az **ArtisticEye** egy komplex, vizsgaremekként (és portfólióként) készült Single Page Application (SPA) alapú közösségi képmegosztó platform. A rendszer ötvözi a vizuális galériák (pl. Pinterest, ArtStation) letisztult élményét a modern közösségi média funkcióival (követési hálózatok, privát chat, valós idejű interakciók). 
+
+A projekt elsődleges célja egy olyan aktív, kreatív ökoszisztéma kialakítása, ahol a felhasználók (ötletgazdák és megvalósítók) magas minőségű vizuális felületen oszthatják meg alkotásaikat, inspirációt meríthetnek egymás munkáiból, szakmai visszajelzéseket adhatnak és kapcsolatokat építhetnek.
+
+## Főbb funkciók és Architektúra
 
 ### Dinamikus Galéria és Képkezelés
-* **Dinamikus Galéria:** Pinterest-stílusú (Masonry) elrendezés letisztult képnézegetővel.
-* **Intelligens képoptimalizálás:** A feltöltött képeket a szerver a `sharp` könyvtár segítségével automatikusan formázza és optimalizálja, drasztikusan csökkentve a betöltési időt.
-* **Keresés:** Keresés felhasználókra (@username vagy teljes név) és tartalmakra.
+* **Pinterest-stílusú (Masonry) Grid:** A Főoldal és a Galéria egy egyedi, reszponzív aszimmetrikus rácsrendszert használ, amely a képek képarányához igazodva jeleníti meg a tartalmakat, maximalizálva a vizuális élményt.
+* **Intelligens Szerveroldali Képoptimalizálás:** A feltöltött fájlokat a Node.js szerver a `multer` és a `sharp` könyvtárak segítségével memóriaszinten (buffer) dolgozza fel. A képeket automatikusan tömöríti, optimalizálja és a megfelelő formátumba konvertálja a sávszélesség kímélése és a gyorsabb betöltés (Lazy Loading) érdekében.
+* **Komplex Keresőmotor:** A rendszer lehetővé teszi a keresést dinamikus címkék (tagek), kategóriák, valamint specifikus felhasználónevek (@username) alapján.
 
-### Közösségi Interakciók
-* **Követési rendszer:** Kölcsönös követés alapján felépülő ismerősi hálózat.
-* **Interakciók:** Tartalmak kedvelése, kommentelése, valamint Top 10 ranglista a legnépszerűbb alkotókból.
-* **Okos Értesítések:** Azonnali rendszerértesítések új követőkről, üzenetekről vagy ha valaki interakcióba lép a posztoddal.
+### Közösségi Interakciók és Kommunikáció
+* **Kölcsönös Követési Rendszer:** A felhasználók felépíthetik saját ismerősi hálózatukat, amely alapján a rendszer személyre szabott tartalmi feedet (idővonalat) generál.
+* **Azonnali Interakciók:** A posztok aszinkron módon kedvelhetők és kommentelhetők, anélkül, hogy az oldal újratöltődne. 
+* **Privát Chat és Gépelés Jelzése:** Beépített, végpontok közötti üzenetküldő rendszer. A UI valós időben (Typing indicator) jelzi, ha a beszélgetőpartner éppen válaszol, emellett a profiloknál megjelenik az olvasatlan üzenetek pontos száma is.
 
-### Kommunikáció
-* **Privát Chat:** Beépített üzenetküldő rendszer az ismerősök közötti kommunikációhoz.
-* **Gépelés jelzése:** Valós időben láthatod, ha a partnered éppen üzenetet ír (Typing indicator).
-* **Olvasottsági státusz:** Megtekintheted a profiloknál az olvasatlan üzenetek számát.
-
-### Biztonság és Profilkezelés
-* **JWT Hitelesítés:** Biztonságos JSON Web Token alapú bejelentkezés és session kezelés.
-* **Elfelejtett jelszó:** Token alapú, e-mailben történő biztonságos jelszó-visszaállítás.
-* **Testreszabható Profilok:** Avatar feltöltés, bemutatkozás (bio), és tartózkodási hely megadása statisztikákkal (követők száma, like-ok).
-* **Profi Adminisztráció:** Dedikált felület és szerepkör a felhasználók, posztok, kommentek moderálására és jelentések (reports) kezelésére.
+### Biztonság és Jogosultságkezelés
+* **JWT Hitelesítés és Route Protection:** A teljes rendszer biztonságos JSON Web Token alapú bejelentkezést használ. A React kliensoldalon Higher-Order Componentek (HOC) védik a privát útvonalakat.
+* **Titkosítás:** A jelszavak nyílt szöveg helyett `bcrypt.js` segítségével, sózva (salted hash) kerülnek a MySQL adatbázisba.
+* **Adminisztrációs Vezérlőpult:** Egy dedikált, csak megfelelő szerepkörrel (Role-Based Access Control) elérhető felület a platform moderálására. Lehetőséget ad a jelentett tartalmak (Reports) eltávolítására, a szabályszegő felhasználók tiltására és a globális statisztikák áttekintésére.
 
 ## Alkalmazott technológiák
 
-**Frontend:**
-* **React.js (Vite)** – Gyors és modern kliensoldali renderelés
-* **React Router DOM** – Kliensoldali navigáció
-* **Tiszta CSS3** – Reszponzív, modern UI, CSS változók és animációk
-* **React Icons & React Toastify** – Felhasználói élmény növelése
+**Kliensoldal (Frontend):**
+* **React.js (Vite)** – Gyors, optimalizált fejlesztői környezet és kliensoldali renderelés
+* **React Router DOM** – Kliensoldali dinamikus navigáció
+* **Tiszta CSS3 / CSS Változók** – Teljesen egyedi, modern "Glassmorphism" sötét téma (Dark Mode)
+* **React Icons & React Toastify** – Ikonográfia és eseményvezérelt vizuális visszajelzések
 
-**Backend & Adatbázis:**
-* **Node.js & Express.js** – Robusztus REST API szerver
-* **MySQL** – Relációs adatbázis a stabil adattároláshoz
-* **Bcrypt.js & JWT** – Biztonságos jelszó titkosítás és azonosítás
-* **Multer & Sharp** – Fájlfeltöltés és hatékony memóriaszintű képfeldolgozás
+**Szerveroldal és Adatbázis (Backend):**
+* **Node.js & Express.js** – Robusztus, aszinkron RESTful API szerver
+* **MySQL** – Relációs adatbázis a stabil, normalizált adattároláshoz és a komplex kapcsolatok kezeléséhez
+* **Bcrypt.js & JWT** – Biztonsági réteg és munkamenet-kezelés
+* **Multer & Sharp** – Multipart/form-data kérések kezelése és képfeldolgozás
 
-## Fejlesztők
+## Fejlesztők és Felelősségi körök
 
-A projektet szoros együttműködésben, közös munkában fejlesztettük. Mindketten egyenlő mértékben, közösen vettünk részt a teljes Full-Stack alkalmazás – a frontend, a backend és az infrastruktúra – kialakításában.
+A projektet a modern agilis szoftverfejlesztési módszertanoknak megfelelően építettük fel. Mindketten **Full-Stack Fejlesztőként** vettünk részt a munkában, így a kliensoldali (Frontend) és a szerveroldali (Backend) architektúra kialakításában is teljeskörűen dolgoztunk. 
 
-Fejlesztőkként (**Fodor Zsombor Dezső** és **Gerencsér Ákos**) a közös feladataink a következők voltak:
-*   Közösen terveztük és kiviteleztük a React.js alapú kliensoldali architektúrát, a komponens-struktúrát és a teljes UI/UX dizájnt (Glassmorphism, Masonry grid).
-*   Implementáltuk a Node.js/Express.js alapú REST API szerverarchitektúrát és a végpontokat.
-*   Kialakítottuk az adatbázis-tervet (MySQL), a relációs sémát és az adatintegritási szabályokat.
-*   Implementáltuk a biztonsági réteget: JWT alapú hitelesítést, jelszavak titkosítását (Bcrypt.js), és az SQL Injection elleni védelmet.
-*   Integráltuk a kliensoldali állapotkezelést és a szerveroldali, intelligens képfeldolgozó modult (Multer, Sharp).
-*   Kifejlesztettük a kommunikációs réteget a privát chathez, a gépelés jelzéséhez és az értesítési rendszerhez.
-*   Konténerizáltuk a teljes alkalmazást (Docker, Docker Compose) és közösen alakítottuk ki a DevOps folyamatokat.
-*   Beállítottuk az automatizált tesztelési környezeteket (Jest, Supertest, Selenium) és megírtuk az API, illetve E2E teszteseteket.
+A kód minőségének biztosítása, a határidők betartása és a hatékony projektmenedzsment érdekében a funkciókat és a technikai felelősségi köröket az alábbiak szerint osztottuk fel:
 
----
+### Fodor Zsombor Dezső (Full-Stack Fejlesztő)
+* **Kliensoldali Architektúra és Állapotkezelés:** A teljes React.js (Vite) frontend alapjainak lefektetése. A komponens-hierarchia és a dinamikus útvonalválasztás (React Router DOM) megtervezése. A komplex kliensoldali állapotkezelés (State Management) felépítése, beleértve a bejelentkezett felhasználó adatainak globális elérését a rendszerben.
+* **UX/UI Design és Reszponzivitás:** A Főoldal, a "Felfedezés" (Galéria) és a Profil felületek teljes körű vizuális kialakítása. A Pinterest-stílusú (Masonry) aszimmetrikus kártyás elrendezés egyedi CSS és JavaScript logikájának megírása. A "Glassmorphism" (üveghatású) sötét téma (Dark Mode) színpalettájának finomhangolása, figyelve a mobil-első (Mobile-First) és reszponzív megjelenésre minden kijelzőméreten.
+* **Hitelesítés és Kriptográfia (Backend):** A teljes autentikációs végpont-rendszer (Auth API) felépítése a Node.js szerveren. A JSON Web Token (JWT) generálásának, aláírásának és érvényesítésének leprogramozása. A biztonságos jelszókezelés integrálása a `bcrypt.js` könyvtár segítségével (sózás és hashelés), valamint a felhasználói adatok (profilképek, bio) frissítését biztosító szerveroldali logika megírása.
+* **API Integráció és Rendszertesztelés:** A kliens és a szerver közötti aszinkron adatkommunikáció optimalizálása. A betöltési állapotok (Loading states) és a globális hibakezelési logika (Error Handling) megírása, biztosítva, hogy a frontend minden HTTP hibaüzenetet megfelelően, felhasználóbarát módon reagáljon le. A backend végpontok megbízhatóságának és biztonságának tesztelése.
 
-## Telepítés és Futtatás (Helyi környezetben)
+### Gerencsér Ákos (Full-Stack Fejlesztő)
+* **Adatbázis-tervezés és Backend Logika:** A MySQL relációs adatbázis sémájának megtervezése a kezdeti ER (Entity-Relationship) diagramoktól a fizikai megvalósításig. A táblák normalizálása és az összetett SQL relációk (N:M kapcsolatok a kedvelésekhez, kommentekhez és a kölcsönös követési hálózatokhoz) optimalizált, alacsony késleltetésű lekérdezéseinek megírása.
+* **Szerveroldali Képfeldolgozás:** A képmegosztó platform legkritikusabb részének, a fájlkezelésnek a leprogramozása. A `multer` könyvtár integrálása a multipart/form-data kérések fogadására, valamint a `sharp` modul beépítése az intelligens, memóriaszintű (buffer) képfeldolgozáshoz (automatikus átméretezés, tömörítés és formátum-konverzió).
+* **Dinamikus Frontend Komponensek és Moderáció:** A biztonságos Adminisztrációs Központ (Vezérlőpult) felépítése a kliensoldalon. A dinamikus adatokat megjelenítő, szerveroldalról vezérelt táblázatok, az interaktív tartalomfeltöltő űrlapok (kliensoldali validációkkal), és a rendszer-visszajelzéseket biztosító Toastify értesítési felületek implementálása.
+* **Infrastruktúra és Konténerizáció (DevOps):** A teljes alkalmazás architektúrájának konténerizálása a hordozhatóság érdekében. A `Dockerfile` és `docker-compose.yml` konfigurációk megírása a frontend, a backend, az adatbázis és a dokumentációs szerver párhuzamos, elszigetelt futtatásához. A fejlesztői (.env) környezeti változók és a belső hálózati kommunikáció biztonságos beállítása a konténerek között.
 
-### 1. Adatbázis beállítása
-1. Telepíts egy lokális webszervert (pl. XAMPP).
-2. Hozz létre egy új MySQL adatbázist.
-3. Importáld be a projektben található SQL fájlt a táblák létrehozásához.
-4. Módosítsd a `Backend/db.js` fájlban az adatbázis kapcsolati adatait.
+## Telepítés és Futtatás (Docker környezetben)
 
-### 2. Backend indítása
-Nyiss egy terminált a backend mappában:
-\`\`\`bash
-npm install
-node server.js
-\`\`\`
-*(A backend alapértelmezetten a `http://localhost:3000` porton indul el.)*
+Ez a projekt a **Docker** és **Docker Compose** segítségével egyetlen paranccsal elindítható. A rendszer automatikusan felépíti az adatbázist, és elindítja a frontend, backend, valamint a dokumentációs szervereket.
 
-### 3. Frontend indítása
-Nyiss egy új terminált a frontend mappában:
-\`\`\`bash
-npm install
-npm run dev
-\`\`\`
-*(A frontend a Vite segítségével indul el, általában a `http://localhost:5173` címen.)*
+### Előfeltételek
+* [Docker Desktop](https://www.docker.com/products/docker-desktop) telepítve és fut.
+* **Node.js** telepítve (kizárólag az `npm` parancsok futtatásához).
+
+### Indítás
+
+1. Nyiss egy terminált a projekt gyökérkönyvtárában (ahol a `docker-compose.yml` fájl található).
+2. Futtasd az inicializáló parancsot, ami minden alprojekt (Frontend, Backend, Docusaurus) függőségeit letölti és telepíti:
+   ```bash
+   npm install
+3. Indítsd el a teljes alkalmazást a következő paranccsal:
+
+   ```bash
+   npm start
+
+Megjegyzés: Ez a parancs leállítja és törli a korábbi adatbázis konténert, újraépíti azt, majd párhuzamosan elindítja a Backend, Frontend és Docusaurus szervereket.
+
+Elérhetőségek indítás után
+A sikeres indítást követően az alkalmazás részei az alábbi alapértelmezett címeken lesznek elérhetőek a böngésződből:
+
+Frontend (ArtisticEye): http://localhost:5173
+
+Backend API: http://localhost:3000
+
+Dokumentáció (Docusaurus): http://localhost:3001
+
+Adatbázis-kezelő (phpMyAdmin): http://localhost:8080
 
 ---
 *Készült vizsgamunkaként / Portfólió projektként - 2026*
