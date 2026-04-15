@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: db:3306
--- Létrehozás ideje: 2026. Ápr 15. 09:37
+-- Létrehozás ideje: 2026. Ápr 15. 20:56
 -- Kiszolgáló verziója: 8.0.45
 -- PHP verzió: 8.3.26
 
@@ -206,8 +206,6 @@ CREATE TABLE `ideas` (
 
 INSERT INTO `ideas` (`id`, `user_id`, `category_id`, `title`, `description`, `created_at`) VALUES
 (14, 7, 3, 'Egy meglepődött ember', 'pog', '2026-03-11 22:45:52'),
-(15, 7, 6, 'wowow', 'wowow\n', '2026-03-19 18:57:54'),
-(16, 7, 14, 'VALAMI GOOD', 'SZUUUUUUPEEER\n', '2026-03-19 19:01:43'),
 (18, 19, 4, 'Valaki rajzolna nekem egy robot trex mintát, előre is köszi', 'ahogy érzi az illető', '2026-04-13 20:25:23'),
 (19, 19, 14, 'Fanmade karaktereket kérek', 'Adjatok rajzokkal ötleteket, bármit', '2026-04-13 20:26:23');
 
