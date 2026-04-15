@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: db:3306
--- Létrehozás ideje: 2026. Ápr 13. 21:06
+-- Létrehozás ideje: 2026. Ápr 15. 09:37
 -- Kiszolgáló verziója: 8.0.45
 -- PHP verzió: 8.3.26
 
@@ -181,7 +181,9 @@ INSERT INTO `follows` (`follower_id`, `following_id`, `created_at`) VALUES
 (19, 20, '2026-04-13 20:24:16'),
 (19, 21, '2026-04-13 20:24:13'),
 (19, 22, '2026-04-13 20:22:20'),
-(20, 7, '2026-03-19 18:21:21');
+(20, 7, '2026-03-19 18:21:21'),
+(23, 7, '2026-04-15 09:16:18'),
+(23, 19, '2026-04-15 09:16:26');
 
 -- --------------------------------------------------------
 
@@ -249,6 +251,10 @@ INSERT INTO `likes` (`user_id`, `post_id`, `created_at`) VALUES
 (18, 57, '2026-04-13 21:00:06'),
 (18, 59, '2026-04-13 21:00:04'),
 (18, 61, '2026-04-13 21:00:03'),
+(19, 17, '2026-04-15 09:08:32'),
+(19, 25, '2026-04-15 09:08:29'),
+(19, 30, '2026-04-15 09:08:27'),
+(19, 32, '2026-04-15 09:08:35'),
 (19, 41, '2026-04-13 20:22:08'),
 (19, 42, '2026-04-13 20:22:14'),
 (19, 45, '2026-04-13 20:21:59'),
@@ -258,6 +264,12 @@ INSERT INTO `likes` (`user_id`, `post_id`, `created_at`) VALUES
 (19, 50, '2026-04-13 20:30:56'),
 (19, 52, '2026-04-13 20:36:01'),
 (19, 53, '2026-04-13 20:40:07'),
+(19, 55, '2026-04-15 09:08:09'),
+(19, 58, '2026-04-15 09:08:20'),
+(19, 59, '2026-04-15 09:08:17'),
+(19, 60, '2026-04-15 09:08:16'),
+(19, 61, '2026-04-15 09:08:15'),
+(19, 62, '2026-04-15 09:07:01'),
 (20, 17, '2026-03-18 18:48:27'),
 (20, 25, '2026-03-18 18:48:29'),
 (20, 32, '2026-03-23 22:14:52'),
@@ -342,7 +354,8 @@ CREATE TABLE `newsletter_subscribers` (
 --
 
 INSERT INTO `newsletter_subscribers` (`id`, `email`, `user_id`, `is_active`, `subscribed_at`) VALUES
-(1, 'fodorzsombi0606@gmail.com', 7, 1, '2026-04-01 12:17:31');
+(1, 'fodorzsombi0606@gmail.com', 7, 1, '2026-04-01 12:17:31'),
+(3, 'akos060316@gmail.com', 19, 1, '2026-04-15 09:05:43');
 
 -- --------------------------------------------------------
 
@@ -487,17 +500,17 @@ INSERT INTO `notifications` (`id`, `user_id`, `sender_id`, `type`, `target_id`, 
 (120, 22, 19, 'like', 48, 0, '2026-04-13 20:34:03'),
 (121, 7, 19, 'implementation', 14, 1, '2026-04-13 20:39:56'),
 (122, 7, 19, 'implementation', 14, 1, '2026-04-13 20:39:56'),
-(123, 19, 7, 'like', 51, 0, '2026-04-13 20:40:32'),
-(124, 19, 7, 'like', 52, 0, '2026-04-13 20:40:34'),
-(125, 19, 7, 'comment', 51, 0, '2026-04-13 20:40:55'),
+(123, 19, 7, 'like', 51, 1, '2026-04-13 20:40:32'),
+(124, 19, 7, 'like', 52, 1, '2026-04-13 20:40:34'),
+(125, 19, 7, 'comment', 51, 1, '2026-04-13 20:40:55'),
 (126, 22, 7, 'like', 42, 0, '2026-04-13 20:41:03'),
 (127, 22, 7, 'comment', 42, 0, '2026-04-13 20:41:21'),
 (128, 22, 7, 'like', 47, 0, '2026-04-13 20:42:12'),
 (129, 22, 7, 'comment', 47, 0, '2026-04-13 20:42:29'),
-(130, 19, 7, 'implementation', 19, 0, '2026-04-13 20:44:08'),
-(131, 19, 20, 'like', 52, 0, '2026-04-13 20:45:01'),
-(132, 19, 20, 'like', 51, 0, '2026-04-13 20:45:02'),
-(133, 19, 20, 'like', 50, 0, '2026-04-13 20:45:03'),
+(130, 19, 7, 'implementation', 19, 1, '2026-04-13 20:44:08'),
+(131, 19, 20, 'like', 52, 1, '2026-04-13 20:45:01'),
+(132, 19, 20, 'like', 51, 1, '2026-04-13 20:45:02'),
+(133, 19, 20, 'like', 50, 1, '2026-04-13 20:45:03'),
 (134, 22, 20, 'like', 49, 0, '2026-04-13 20:45:06'),
 (135, 22, 20, 'like', 48, 0, '2026-04-13 20:45:07'),
 (136, 22, 20, 'like', 43, 0, '2026-04-13 20:45:08'),
@@ -510,23 +523,35 @@ INSERT INTO `notifications` (`id`, `user_id`, `sender_id`, `type`, `target_id`, 
 (143, 7, 20, 'like', 34, 1, '2026-04-13 20:45:15'),
 (144, 7, 20, 'like', 31, 1, '2026-04-13 20:45:17'),
 (145, 7, 20, 'like', 55, 1, '2026-04-13 20:45:24'),
-(146, 19, 20, 'like', 54, 0, '2026-04-13 20:45:29'),
-(147, 19, 20, 'like', 53, 0, '2026-04-13 20:45:31'),
-(148, 19, 20, 'implementation', 18, 0, '2026-04-13 20:47:10'),
+(146, 19, 20, 'like', 54, 1, '2026-04-13 20:45:29'),
+(147, 19, 20, 'like', 53, 1, '2026-04-13 20:45:31'),
+(148, 19, 20, 'implementation', 18, 1, '2026-04-13 20:47:10'),
 (149, 22, 7, 'like', 46, 0, '2026-04-13 20:55:15'),
-(150, 7, 18, 'like', 61, 0, '2026-04-13 21:00:03'),
-(151, 7, 18, 'like', 59, 0, '2026-04-13 21:00:04'),
+(150, 7, 18, 'like', 61, 1, '2026-04-13 21:00:03'),
+(151, 7, 18, 'like', 59, 1, '2026-04-13 21:00:04'),
 (152, 20, 18, 'like', 57, 0, '2026-04-13 21:00:06'),
 (153, 22, 18, 'like', 47, 0, '2026-04-13 21:00:08'),
 (154, 22, 18, 'like', 49, 0, '2026-04-13 21:00:10'),
-(155, 19, 18, 'like', 51, 0, '2026-04-13 21:00:12'),
+(155, 19, 18, 'like', 51, 1, '2026-04-13 21:00:12'),
 (156, 22, 18, 'like', 45, 0, '2026-04-13 21:00:14'),
 (157, 22, 18, 'like', 42, 0, '2026-04-13 21:00:16'),
-(158, 7, 18, 'like', 17, 0, '2026-04-13 21:00:18'),
-(159, 7, 18, 'like', 30, 0, '2026-04-13 21:00:20'),
+(158, 7, 18, 'like', 17, 1, '2026-04-13 21:00:18'),
+(159, 7, 18, 'like', 30, 1, '2026-04-13 21:00:20'),
 (160, 22, 18, 'like', 40, 0, '2026-04-13 21:00:22'),
-(161, 19, 18, 'follow', NULL, 0, '2026-04-13 21:03:33'),
-(162, 19, 18, 'implementation', 19, 0, '2026-04-13 21:05:35');
+(161, 19, 18, 'follow', NULL, 1, '2026-04-13 21:03:33'),
+(162, 19, 18, 'implementation', 19, 1, '2026-04-13 21:05:35'),
+(163, 18, 19, 'like', 62, 0, '2026-04-15 09:07:01'),
+(164, 7, 19, 'like', 55, 1, '2026-04-15 09:08:09'),
+(165, 7, 19, 'like', 61, 1, '2026-04-15 09:08:15'),
+(166, 7, 19, 'like', 60, 1, '2026-04-15 09:08:16'),
+(167, 7, 19, 'like', 59, 1, '2026-04-15 09:08:17'),
+(168, 7, 19, 'like', 58, 1, '2026-04-15 09:08:20'),
+(169, 7, 19, 'like', 30, 1, '2026-04-15 09:08:27'),
+(170, 7, 19, 'like', 25, 1, '2026-04-15 09:08:29'),
+(171, 7, 19, 'like', 17, 1, '2026-04-15 09:08:32'),
+(172, 7, 19, 'like', 32, 1, '2026-04-15 09:08:35'),
+(173, 7, 23, 'follow', NULL, 1, '2026-04-15 09:16:18'),
+(174, 19, 23, 'follow', NULL, 0, '2026-04-15 09:16:26');
 
 -- --------------------------------------------------------
 
@@ -638,12 +663,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `role`, `full_name`, `bio`, `avatar_url`, `created_at`, `location`, `is_verified`, `verification_token`, `verification_token_expires`, `reset_token`, `reset_token_expires`, `last_seen`, `avatar_data`, `avatar_type`) VALUES
-(7, 'zsonibi', 'fodorzsombi0606@gmail.com', '$2b$10$AVoCRUGUc8xXoRDPT/j/ZuiEX3R5ez4KF.jraWiHm4DX2f0k3.1MK', 'admin', 'Fodor Zsombor Dezső', 'Az ArtisticEye egyik fejlesztője. Szoftver fejlesztő és tesztelő.', 'http://localhost:3000/api/users/7/avatar', '2026-02-17 18:21:27', 'Magyarorszag, Cserszegtomaj', 1, NULL, NULL, '177283', '2026-04-13 14:57:09', '2026-04-13 20:59:14', NULL, 'image/jpeg'),
+(7, 'zsonibi', 'fodorzsombi0606@gmail.com', '$2b$10$AVoCRUGUc8xXoRDPT/j/ZuiEX3R5ez4KF.jraWiHm4DX2f0k3.1MK', 'admin', 'Fodor Zsombor Dezső', 'Az ArtisticEye egyik fejlesztője. Szoftver fejlesztő és tesztelő.', 'http://localhost:3000/api/users/7/avatar', '2026-02-17 18:21:27', 'Magyarorszag, Cserszegtomaj', 1, NULL, NULL, '576404', '2026-04-15 10:35:47', '2026-04-13 20:59:14', NULL, 'image/jpeg'),
 (18, 'v1', 'valami@valami.hu', '$2b$10$nuJoHDiQP9yJtouD0ADRNu9Gi4If2DeAq.ejcs5yEhbTwzQ19DkbK', 'user', 'valami', 'valami', 'http://localhost:3000/api/users/18/avatar', '2026-03-16 20:10:10', 'valami', 1, NULL, NULL, NULL, NULL, '2026-04-13 21:03:36', NULL, 'image/jpeg'),
-(19, 'Akos', 'akos060316@gmail.com', '$2b$10$DC8Tc6Og0vW9EbKGy8xFVO4Qri7M/GrEGCMtwaXkC6THN99uT8cyS', 'admin', 'Gerencsér Ákos', 'Az ArtisticEye egyik fejlesztője. Szoftver fejlesztő és tesztelő.', 'http://localhost:3000/api/users/19/avatar', '2026-03-17 08:38:40', 'Magyarorszag, Tapolca', 1, NULL, NULL, NULL, NULL, '2026-04-13 20:36:03', NULL, NULL),
+(19, 'Akos', 'akos060316@gmail.com', '$2b$10$DC8Tc6Og0vW9EbKGy8xFVO4Qri7M/GrEGCMtwaXkC6THN99uT8cyS', 'admin', 'Gerencsér Ákos', 'Az ArtisticEye egyik fejlesztője. Szoftver fejlesztő és tesztelő.', 'http://localhost:3000/api/users/19/avatar', '2026-03-17 08:38:40', 'Magyarorszag, Tapolca', 1, NULL, NULL, NULL, NULL, '2026-04-15 09:10:24', NULL, NULL),
 (20, 'Ricsi', 'Ricsi@gmail.com', '$2b$10$GtNq.gjy4uebdALBtVSlT.q3w4k0O22wpxVuMEMWdci/thJ0ojE5y', 'user', 'Ricsárd', 'Ricsi vagyok', 'http://localhost:3000/api/users/20/avatar', '2026-03-18 18:47:18', 'Magyarország', 1, NULL, NULL, NULL, NULL, NULL, NULL, 'image/jpeg'),
 (21, 'Felhasznalo', 'zsomzsomfodfod@gmail.com', '$2b$10$KJKtW5BmRFwpmoN7kzZPCu3iLybYEu2YVaGzKLYlUBsBe5jhZg3tm', 'user', NULL, NULL, 'https://ui-avatars.com/api/?name=Felhasznalo&background=random&color=fff&size=128', '2026-03-31 19:34:07', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 'FKL210', 'fodorkoppany@gmail.com', '$2b$10$MGa0Ik..sy.70x9Vy7R3Luh.sTat6jgOke32FBGGJoMuaH9hCpsnO', 'user', 'Fodor Koppány László', 'Rajzolni próbálgatok', 'http://localhost:3000/api/users/22/avatar', '2026-04-09 21:36:18', 'Magyaroszág', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(22, 'FKL210', 'fodorkoppany@gmail.com', '$2b$10$MGa0Ik..sy.70x9Vy7R3Luh.sTat6jgOke32FBGGJoMuaH9hCpsnO', 'user', 'Fodor Koppány László', 'Rajzolni próbálgatok', 'http://localhost:3000/api/users/22/avatar', '2026-04-09 21:36:18', 'Magyaroszág', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 'Test', 'test@email.com', '$2b$10$3uahmPlTkt7g98l/A.io3eH0.sv9OuCoextW/UPc9oL9c9O5cZ7h.', 'admin', 'Test', 'Oldal teszteléséhez lett létrehozva', 'https://ui-avatars.com/api/?name=Test&background=random&color=fff&size=128', '2026-04-15 09:13:40', 'Keszthely, Premontrei', 1, '759520', '2026-04-16 09:13:40', NULL, NULL, '2026-04-15 09:16:07', NULL, NULL);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -806,19 +832,19 @@ ALTER TABLE `newsletter_content`
 -- AUTO_INCREMENT a táblához `newsletter_subscribers`
 --
 ALTER TABLE `newsletter_subscribers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT a táblához `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT a táblához `reports`
@@ -830,7 +856,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Megkötések a kiírt táblákhoz
